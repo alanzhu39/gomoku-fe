@@ -13,7 +13,7 @@ function App() {
     }
   }
 
-  const ws = new WebSocket("ws://localhost:8080/lobby/create");
+  const ws = new WebSocket("ws://localhost:8080/connect/");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
