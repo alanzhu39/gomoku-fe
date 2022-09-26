@@ -3,3 +3,21 @@ TODO:
 9/25/22:
 In progress:
 - FE architecture
+
+FE architecture:
+- Single page for now...
+  - Might need to change backend, if FE is changing WS connection often?
+    - or could we maintain a single ws object
+- Components:
+  - Game board
+    - Default: blank animation
+    - Grid and labels
+    - Pieces, current piece marker, win marker
+  - Side panel
+    - Lobby creator
+      - Create lobby button
+      - Join lobby form
+    - Game info
+      - moves list
+      - player cards
+      - buttons
