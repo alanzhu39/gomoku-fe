@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -6,19 +5,21 @@ import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('');
+  const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
 
-  function handleClick() {
-    if (inputRef.current?.value) {
+  function handleClick(e: any) {
+    e.preventDefault();
+    if (inputRef.current?.value != null) {
       ws.send(inputRef.current.value);
     }
   }
 
-  const ws = new WebSocket("ws://localhost:8080/connect/");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     ws.onmessage = (event) => {
-      setMessage(event.data)
+      console.log(event);
+      setMessage(event.data);
     };
 
     // axios.get('http://localhost:8080/lobby/create').then((response) => {
@@ -37,12 +38,12 @@ function App() {
         </p>
         <p>{message}</p>
 
-        <input
-          ref={inputRef}
-          type="text"
-        />
-        <br />
-        <button onClick={handleClick}>Submit</button>
+        <form onSubmit={handleClick}>
+          <input ref={inputRef} type="text" />
+          <br />
+          <button onClick={handleClick}>Submit</button>
+        </form>
+
         <br />
 
         <a
