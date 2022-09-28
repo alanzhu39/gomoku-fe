@@ -26,7 +26,14 @@
         "@typescript-eslint/camelcase": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
-        "prettier/prettier": ["error", { "singleQuote": true }],
+        "prettier/prettier": [
+            "error", 
+            {
+                "singleQuote": true,
+                "jsxSingleQuote": true,
+                "trailingComma": "none"
+            }
+        ],
         "no-constant-condition": "off"
     }
 }

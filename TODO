@@ -1,5 +1,73 @@
 TODO:
 
+9/27/22:
+In progress:
+- FE implementation
+
+Components:
+App
+  const websocket;
+  GameBoard
+    const pieces[][];
+    const lastPiece;
+    Board (grid, labels, background)
+      fn placePiece() ->
+        // update GameBoard state
+        // update MovesList state
+      GhostPiece
+        const color;
+        event onClick() -> placePiece()
+    Piece
+      const color;
+      const isLastPiece;
+  Info Panel
+    const lobbyStatus;
+    PreGamePanel (if lobbyStatus == waiting)
+      CreateLobby
+      JoinLobby
+        const lobbyId;
+    GameStartedPanel (if lobbyStatus == game started)
+      const player1Info;
+      const player2Info;
+      PlayerInfo
+        const playerInfo;
+      MovesList
+        const movesList;
+      Buttons
+        Resign
+    PostGamePanel (if lobbyStatus == game finished)
+      Buttons
+        ExitLobby
+        Rematch
+
+State:
+- lobby state
+  - players ready
+  - game state
+- game state
+  - moves list
+  - result
+  - board state
+- board state
+  - piece locations
+  - last move marker
+  - has 5 marker
+
+- Game board
+  - Default: blank animation
+  - Grid and labels
+  - Pieces, current piece marker, win marker
+- Side panel
+  - Lobby creator
+    - Create lobby button
+    - Join lobby form
+  - Game info
+    - moves list
+    - player cards
+    - buttons
+
+
+
 9/25/22:
 In progress:
 - FE architecture
