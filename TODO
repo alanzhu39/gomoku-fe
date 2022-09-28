@@ -26,11 +26,8 @@ App
       CreateLobby
       JoinLobby
         const lobbyId;
-    GameStartedPanel (if lobbyStatus == game started)
-      const player1Info;
-      const player2Info;
+    InGamePanel (if lobbyStatus == game started)
       PlayerInfo
-        const playerInfo;
       MovesList
         const movesList;
       Buttons
