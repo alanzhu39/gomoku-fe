@@ -1,6 +1,7 @@
-import { assert } from 'console';
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
+import GameBoard from './GameBoard/GameBoard';
+import InfoPanel from './InfoPanel/InfoPanel';
+import './Game.css';
 
 function Game() {
   // TODO: update ws URL
@@ -34,7 +35,15 @@ function Game() {
     setPieces(initPieces);
   });
 
-  return <div className='Game'>{/* TODO */}</div>;
+  return (
+    <div className='Game'>
+      Game
+      <div className='Game-container'>
+        <GameBoard pieces={pieces} onChange={setPieces} />
+        <InfoPanel lobbyState={lobbyState} onChange={setLobbyState} />
+      </div>
+    </div>
+  );
 }
 
 export enum PieceType {
@@ -62,7 +71,9 @@ export class PlayerMove {
     this.moveType = moveType;
     switch (this.moveType) {
       case MoveType.PIECE: {
-        assert(!(coordinate == null || coordinate === undefined));
+        if (!(coordinate == null || coordinate === undefined)) {
+          throw new Error('Bad player move');
+        }
         this.coordinate = coordinate;
       }
     }

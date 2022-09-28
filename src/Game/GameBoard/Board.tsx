@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
 import { PieceType } from '../Game';
 
 function Board() {
@@ -8,7 +7,7 @@ function Board() {
    * Includes grid, labels, board background
    */
 
-  return <div className='Board'>{/* TODO */}</div>;
+  return <div className='Board'>Board</div>;
 }
 
 export default Board;

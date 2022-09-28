@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
 import { LobbyState } from '../Game';
 
 // TODO: onChange typing
@@ -10,7 +9,7 @@ function InfoPanel(props: { lobbyState: LobbyState; onChange: any }) {
    * Includes: lobbyState
    */
 
-  return <div className='InfoPanel'>{/* TODO */}</div>;
+  return <div className='InfoPanel'>InfoPanel</div>;
 }
 
 export default InfoPanel;

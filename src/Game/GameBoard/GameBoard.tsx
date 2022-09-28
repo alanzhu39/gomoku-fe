@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
+import Board from './Board';
 import { PieceType } from '../Game';
 
-function GameBoard(props: { pieces: PieceType[][] }) {
+function GameBoard(props: { pieces: PieceType[][]; onChange: any }) {
   /**
    * Representation of Gomoku game board
    * Includes base board, and pieces
@@ -12,7 +12,12 @@ function GameBoard(props: { pieces: PieceType[][] }) {
     // TODO: update state via pieces onChange
   };
 
-  return <div className='GameBoard'>{/* TODO */}</div>;
+  return (
+    <div className='GameBoard'>
+      GameBoard
+      <Board />
+    </div>
+  );
 }
 
 export default GameBoard;
