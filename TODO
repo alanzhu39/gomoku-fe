@@ -2,7 +2,13 @@ TODO:
 
 9/27/22:
 In progress:
-- FE implementation
+- Drawing board
+  - Grid with clickable intersections
+  - Outside labels
+  - Background
+  - Responsive sizing
+- Drawing pieces (on board)
+- Info panels
 
 Components:
 App
