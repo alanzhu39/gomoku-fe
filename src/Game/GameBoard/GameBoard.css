@@ -1,0 +1,49 @@
+.Board-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), 40px);
+}
+
+.intersection {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.intersection:hover {
+  cursor: pointer;
+}
+
+.intersection:before {
+  border-top: 2px white solid;
+  width: 40px;
+  display: block;
+  content: '';
+  top: 19px;
+  position: relative;
+}
+
+.intersection[data-intersection-type~='left-edge']:before {
+  left: 19px;
+}
+
+.intersection[data-intersection-type~='right-edge']:before {
+  right: 19px;
+}
+
+.intersection:after {
+  border-left: 2px white solid;
+  height: 40px;
+  display: block;
+  content: '';
+  left: 19px;
+  position: relative;
+}
+
+.intersection[data-intersection-type~='top-edge']:after {
+  top: 19px;
+}
+
+.intersection[data-intersection-type~='bottom-edge']:after {
+  bottom: 21px;
+}

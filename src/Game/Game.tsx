@@ -3,12 +3,22 @@ import GameBoard from './GameBoard/GameBoard';
 import InfoPanel from './InfoPanel/InfoPanel';
 import './Game.css';
 
+export const BOARD_SIZE = 15;
+
 function Game() {
   // TODO: update ws URL
-  const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
+  // const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
 
   // GameBoard state
-  const [pieces, setPieces] = useState([[PieceType.EMPTY]]);
+  // Initialize pieces
+  const initPieces: PieceType[][] = [];
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    initPieces[i] = [];
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      initPieces[i][j] = PieceType.EMPTY;
+    }
+  }
+  const [pieces, setPieces] = useState(initPieces);
 
   // InfoPanel state
   const initMovesList: PlayerMove[] = [];
@@ -19,20 +29,9 @@ function Game() {
 
   useEffect(() => {
     // Initialize ws
-    ws.onmessage = (event) => {
-      // TODO: update necessary state
-    };
-
-    // Initialize pieces
-    const BOARD_SIZE = 15;
-    const initPieces: number[][] = [];
-    for (let i = 0; i < BOARD_SIZE; i++) {
-      initPieces[i] = [];
-      for (let j = 0; j < BOARD_SIZE; j++) {
-        initPieces[i][j] = PieceType.EMPTY;
-      }
-    }
-    setPieces(initPieces);
+    // ws.onmessage = (event) => {
+    //   // TODO: update necessary state
+    // };
   });
 
   return (
