@@ -1,3 +1,11 @@
+.GameBoard {
+  background-color: #deaf21;
+  background-image: url('/src/assets/wood-pattern.png');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Board-grid {
   display: grid;
   grid-template-columns: repeat(var(--board-size), 40px);
@@ -10,12 +18,44 @@
   box-sizing: border-box;
 }
 
+.intersection[data-piece-type='black'] {
+  border: 1px solid #000;
+  background-color: #000;
+}
+
+.intersection[data-piece-type='white'] {
+  border: 1px solid #000;
+  background-color: #eee;
+}
+
 .intersection:hover {
   cursor: pointer;
 }
 
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover {
+  border: 1px solid #000;
+  background-color: #222;
+  cursor: pointer;
+}
+
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover {
+  border: 1px solid #000;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.intersection[data-piece-type='white']:before,
+.intersection[data-piece-type='black']:before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::after,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::after {
+  content: none;
+}
+
 .intersection:before {
-  border-top: 2px white solid;
+  pointer-events: none;
+  border-top: 2px #222 solid;
   width: 40px;
   display: block;
   content: '';
@@ -23,21 +63,23 @@
   position: relative;
 }
 
-.intersection[data-intersection-type~='left-edge']:before {
-  left: 19px;
-}
-
 .intersection[data-intersection-type~='right-edge']:before {
   right: 19px;
 }
 
 .intersection:after {
-  border-left: 2px white solid;
+  pointer-events: none;
+  border-left: 2px #222 solid;
   height: 40px;
   display: block;
   content: '';
   left: 19px;
   position: relative;
+}
+
+.intersection[data-piece-type='white']:after,
+.intersection[data-piece-type='black']:after {
+  content: none;
 }
 
 .intersection[data-intersection-type~='top-edge']:after {

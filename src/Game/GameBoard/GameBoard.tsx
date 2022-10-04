@@ -4,9 +4,12 @@ import './GameBoard.css';
 
 const GRID_SIZE = 40;
 
-function BoardIntersection(props: { row: number; col: number }) {
-  const classes = 'intersection';
-
+function BoardIntersection(props: {
+  pieceType: PieceType;
+  ghostPieceType: PieceType;
+  row: number;
+  col: number;
+}) {
   const intersectionTypes: string[] = [];
   if (props.row === 0) {
     intersectionTypes.push('top-edge');
@@ -21,15 +24,44 @@ function BoardIntersection(props: { row: number; col: number }) {
     intersectionTypes.push('right-edge');
   }
 
+  let ghostPieceType = 'empty';
+  switch (props.ghostPieceType) {
+    case PieceType.BLACK:
+      ghostPieceType = 'black';
+      break;
+    case PieceType.WHITE:
+      ghostPieceType = 'white';
+      break;
+  }
+
+  let dataPieceType = 'empty';
+  switch (props.pieceType) {
+    case PieceType.BLACK:
+      dataPieceType = 'black';
+      break;
+    case PieceType.WHITE:
+      dataPieceType = 'white';
+      break;
+    case PieceType.EMPTY:
+      dataPieceType = 'empty';
+      break;
+  }
+
   return (
     <div
-      className={classes}
+      className='intersection'
+      data-piece-type={dataPieceType}
+      data-ghost-piece-type={ghostPieceType}
       data-intersection-type={intersectionTypes.join(' ')}
     />
   );
 }
 
-function GameBoard(props: { pieces: PieceType[][]; onChange: any }) {
+function GameBoard(props: {
+  pieces: PieceType[][];
+  myPieceType: PieceType;
+  onChange: any;
+}) {
   /**
    * Representation of Gomoku game board
    * Includes base board, and pieces
@@ -45,20 +77,26 @@ function GameBoard(props: { pieces: PieceType[][]; onChange: any }) {
       intersections.push(
         BoardIntersection({
           row: i,
-          col: j
+          col: j,
+          pieceType: props.pieces[i][j],
+          ghostPieceType: props.myPieceType
         })
       );
 
-  const style = {
+  const gameBoardStyle = {
+    width: (BOARD_SIZE + 1) * GRID_SIZE,
+    height: (BOARD_SIZE + 1) * GRID_SIZE
+  };
+
+  const boardGridStyle = {
     width: BOARD_SIZE * GRID_SIZE,
     height: BOARD_SIZE * GRID_SIZE,
     '--board-size': BOARD_SIZE
   };
 
   return (
-    <div className='GameBoard'>
-      GameBoard
-      <div className='Board-grid' style={style}>
+    <div className='GameBoard' style={gameBoardStyle}>
+      <div className='Board-grid' style={boardGridStyle}>
         {intersections}
       </div>
     </div>
