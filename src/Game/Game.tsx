@@ -15,9 +15,9 @@ function Game() {
   for (let i = 0; i < BOARD_SIZE; i++) {
     initPieces[i] = [];
     for (let j = 0; j < BOARD_SIZE; j++) {
-      if (j === 0) {
+      if (i === j) {
         initPieces[i][j] = PieceType.BLACK;
-      } else if (j === 1) {
+      } else if (j === i + 1) {
         initPieces[i][j] = PieceType.WHITE;
       } else {
         initPieces[i][j] = PieceType.EMPTY;
@@ -25,7 +25,7 @@ function Game() {
     }
   }
   const [pieces, setPieces] = useState(initPieces);
-  const [myPieceType, setMyPieceType] = useState(PieceType.WHITE);
+  const [myPieceType, setMyPieceType] = useState(PieceType.EMPTY);
 
   // InfoPanel state
   const initMovesList: PlayerMove[] = [];
@@ -43,15 +43,12 @@ function Game() {
 
   return (
     <div className='Game'>
-      Game
-      <div className='Game-container'>
-        <GameBoard
-          pieces={pieces}
-          myPieceType={myPieceType}
-          onChange={setPieces}
-        />
-        <InfoPanel lobbyState={lobbyState} onChange={setLobbyState} />
-      </div>
+      <GameBoard
+        pieces={pieces}
+        myPieceType={myPieceType}
+        onChange={setPieces}
+      />
+      <InfoPanel lobbyState={lobbyState} onChange={setLobbyState} />
     </div>
   );
 }

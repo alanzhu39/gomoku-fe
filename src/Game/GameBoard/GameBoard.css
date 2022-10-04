@@ -1,5 +1,13 @@
+:root {
+  --board-background-color: #ffd369;
+  --board-grid-color: #222831;
+  --piece-white-color: #eee;
+  --piece-black-color: #222;
+  --piece-border-color: #000;
+}
+
 .GameBoard {
-  background-color: #deaf21;
+  background-color: var(--board-background-color);
   background-image: url('/src/assets/wood-pattern.png');
   display: flex;
   align-items: center;
@@ -19,13 +27,13 @@
 }
 
 .intersection[data-piece-type='black'] {
-  border: 1px solid #000;
-  background-color: #000;
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-black-color);
 }
 
 .intersection[data-piece-type='white'] {
-  border: 1px solid #000;
-  background-color: #eee;
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-white-color);
 }
 
 .intersection:hover {
@@ -33,29 +41,20 @@
 }
 
 .intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover {
-  border: 1px solid #000;
-  background-color: #222;
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-black-color);
   cursor: pointer;
 }
 
 .intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover {
-  border: 1px solid #000;
-  background-color: #eee;
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-white-color);
   cursor: pointer;
-}
-
-.intersection[data-piece-type='white']:before,
-.intersection[data-piece-type='black']:before,
-.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::before,
-.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::before,
-.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::after,
-.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::after {
-  content: none;
 }
 
 .intersection:before {
   pointer-events: none;
-  border-top: 2px #222 solid;
+  border-top: 2px var(--board-grid-color) solid;
   width: 40px;
   display: block;
   content: '';
@@ -67,19 +66,18 @@
   right: 19px;
 }
 
+.intersection[data-intersection-type~='left-edge']:before {
+  left: 19px;
+}
+
 .intersection:after {
   pointer-events: none;
-  border-left: 2px #222 solid;
+  border-left: 2px var(--board-grid-color) solid;
   height: 40px;
   display: block;
   content: '';
   left: 19px;
   position: relative;
-}
-
-.intersection[data-piece-type='white']:after,
-.intersection[data-piece-type='black']:after {
-  content: none;
 }
 
 .intersection[data-intersection-type~='top-edge']:after {
@@ -88,4 +86,15 @@
 
 .intersection[data-intersection-type~='bottom-edge']:after {
   bottom: 21px;
+}
+
+.intersection[data-piece-type='white']:before,
+.intersection[data-piece-type='black']:before,
+.intersection[data-piece-type='white']:after,
+.intersection[data-piece-type='black']:after,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::after,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::after {
+  content: none;
 }

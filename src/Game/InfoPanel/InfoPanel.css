@@ -1,0 +1,7 @@
+.LobbyEmptyPanel {
+  align-self: stretch;
+  background-color: #eeeeee;
+  border-radius: 15px;
+  padding: 15px;
+  width: 400px;
+}

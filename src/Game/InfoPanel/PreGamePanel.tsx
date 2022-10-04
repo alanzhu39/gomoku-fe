@@ -1,13 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PieceType } from '../Game';
+import { LobbyState, LobbyStatus, PieceType } from '../Game';
+import LobbyEmptyPanel from './LobbyEmptyPanel';
 
-function PreGamePanel() {
+function PreGamePanel(props: { lobbyState: LobbyState }) {
   /**
    * Panel displaying pre-game info
-   * Includes: create/join lobby flows
+   * Includes: create/join lobby, start game flows
    */
 
-  return <div className='PreGamePanel'>{/* TODO */}</div>;
+  switch (props.lobbyState.lobbyStatus) {
+    case LobbyStatus.LOBBY_EMPTY:
+      return <LobbyEmptyPanel />;
+    case LobbyStatus.ONE_PLAYER_WAITING:
+    case LobbyStatus.TWO_PLAYERS_WAITING:
+    default:
+      return <LobbyEmptyPanel />;
+  }
 }
 
 export default PreGamePanel;
