@@ -3,6 +3,13 @@ TODO:
 - Responsive sizing
 
 10/13/22: We're back!
+TODO:
+- Empty lobby info panel
+  - Create lobby flow
+  - Join lobby flow
+  - Maybe with API up?
+  - Transition between lobby states
+
 In progress:
 - Info panels
 - PreGamePanel
