@@ -1,7 +1,28 @@
 .LobbyEmptyPanel {
   align-self: stretch;
+  color: #222831;
   background-color: #eeeeee;
   border-radius: 15px;
   padding: 15px;
+  gap: 30px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.InfoPanelButton {
+  border: none;
+  border-radius: 10px;
+  height: 60px;
+  font-size: x-large;
+  font-weight: 500;
+  color: #eeeeee;
+}
+
+.CreateLobbyButton {
+  background-color: #85c88a;
+}
+
+.JoinLobbyButton {
+  background-color: #6fb2d2;
 }

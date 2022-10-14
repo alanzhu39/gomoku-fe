@@ -10,9 +10,11 @@ function LobbyEmptyPanel() {
 
   return (
     <div className='LobbyEmptyPanel'>
-      LobbyEmptyPanel
-      {/* Create lobby button */}
-      {/* Join lobby button */}
+      Start a game!
+      <button className='InfoPanelButton CreateLobbyButton'>
+        Create Lobby
+      </button>
+      <button className='InfoPanelButton JoinLobbyButton'>Join Lobby</button>
     </div>
   );
 }
