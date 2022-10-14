@@ -16,8 +16,8 @@ function Game() {
     initPieces[i] = [];
     for (let j = 0; j < BOARD_SIZE; j++) {
       if (i === j) {
-        initPieces[i][j] = PieceType.BLACK;
-      } else if (j === i + 1) {
+        initPieces[i][j] = PieceType.WHITE;
+      } else if (i === BOARD_SIZE - j - 1) {
         initPieces[i][j] = PieceType.WHITE;
       } else {
         initPieces[i][j] = PieceType.EMPTY;

@@ -2,6 +2,19 @@ TODO:
 - Use env variables
 - Responsive sizing
 
+10/13/22: We're back!
+In progress:
+- Info panels
+- PreGamePanel
+  - create lobby or join lobby
+- Board labels
+- Update state on board click
+
+Finished:
+- Board grid lines extending (can we get z-index or smth like that to work?)
+
+
+
 10/3/22:
 In progress:
 - Info panels

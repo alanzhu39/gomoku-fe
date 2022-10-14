@@ -63,11 +63,12 @@
 }
 
 .intersection[data-intersection-type~='right-edge']:before {
-  right: 19px;
+  width: 21px;
 }
 
 .intersection[data-intersection-type~='left-edge']:before {
   left: 19px;
+  width: 21px;
 }
 
 .intersection:after {
@@ -76,16 +77,18 @@
   height: 40px;
   display: block;
   content: '';
+  top: -2px;
   left: 19px;
   position: relative;
 }
 
 .intersection[data-intersection-type~='top-edge']:after {
   top: 19px;
+  height: 19px;
 }
 
 .intersection[data-intersection-type~='bottom-edge']:after {
-  bottom: 21px;
+  height: 19px;
 }
 
 .intersection[data-piece-type='white']:before,
