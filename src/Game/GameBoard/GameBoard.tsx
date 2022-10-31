@@ -97,7 +97,9 @@ function GameBoard(props: {
   return (
     <div className='GameBoard' style={gameBoardStyle}>
       <div className='Board-grid' style={boardGridStyle}>
-        {intersections}
+        {intersections.map((intersection, index) => (
+          <div key={index}>{intersection}</div>
+        ))}
       </div>
     </div>
   );
