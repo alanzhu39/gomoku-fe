@@ -14,7 +14,16 @@ function LobbyEmptyPanel() {
       <button className='InfoPanelButton CreateLobbyButton'>
         Create Lobby
       </button>
-      <button className='InfoPanelButton JoinLobbyButton'>Join Lobby</button>
+      {/* <hr className='rounded' />
+      <form className='JoinLobbyForm'>
+        <label className='LobbyIdLabel'>
+          Lobby Id:
+          <input type='text' className='LobbyIdInput' value='value' />
+        </label>
+        <button type='submit' className='InfoPanelButton JoinLobbyButton'>
+          Join Lobby
+        </button>
+      </form> */}
     </div>
   );
 }

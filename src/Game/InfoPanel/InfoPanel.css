@@ -1,13 +1,19 @@
 .LobbyEmptyPanel {
-  align-self: stretch;
   color: #222831;
   background-color: #eeeeee;
   border-radius: 15px;
-  padding: 15px;
-  gap: 30px;
+  padding: 30px 15px;
   width: 400px;
   display: flex;
   flex-direction: column;
+}
+
+hr.rounded {
+  margin-top: 7%;
+  margin-bottom: 7%;
+  width: 95%;
+  border-top: 2px solid #bbb;
+  border-radius: 1px;
 }
 
 .InfoPanelButton {
@@ -20,9 +26,34 @@
 }
 
 .CreateLobbyButton {
+  margin-top: 7%;
   background-color: #85c88a;
 }
 
+.JoinLobbyForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.LobbyIdLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  font-size: large;
+  font-weight: 400;
+}
+
+.LobbyIdInput {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  font-size: large;
+  font-weight: 400;
+}
+
 .JoinLobbyButton {
+  margin-top: 7%;
   background-color: #6fb2d2;
 }
