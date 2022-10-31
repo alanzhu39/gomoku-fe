@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LobbyState, LobbyStatus, PieceType } from '../Game';
 import LobbyEmptyPanel from './LobbyEmptyPanel';
-import LobbyWaitingPanel from './LobbyWaitingPanel';
+import TwoPlayerWaitingPanel from './TwoPlayerWaitingPanel';
+import OnePlayerWaitingPanel from './OnePlayerWaitingPanel';
 
 function PreGamePanel(props: {
   lobbyState: LobbyState;
   ws: WebSocket;
-  onChange: any;
+  setLobbyState: any;
 }) {
   /**
    * Panel displaying pre-game info
@@ -14,19 +15,31 @@ function PreGamePanel(props: {
    */
 
   switch (props.lobbyState.lobbyStatus) {
-    case LobbyStatus.LOBBY_EMPTY:
-      return <LobbyEmptyPanel ws={props.ws} onChange={props.onChange} />;
     case LobbyStatus.ONE_PLAYER_WAITING:
-    case LobbyStatus.TWO_PLAYERS_WAITING:
       return (
-        <LobbyWaitingPanel
+        <OnePlayerWaitingPanel
           lobbyState={props.lobbyState}
           ws={props.ws}
-          onChange={props.onChange}
+          setLobbyState={props.setLobbyState}
         />
       );
+    case LobbyStatus.TWO_PLAYERS_WAITING:
+      return (
+        <TwoPlayerWaitingPanel
+          lobbyState={props.lobbyState}
+          ws={props.ws}
+          setLobbyState={props.setLobbyState}
+        />
+      );
+    case LobbyStatus.LOBBY_EMPTY:
     default:
-      return <LobbyEmptyPanel ws={props.ws} onChange={props.onChange} />;
+      return (
+        <LobbyEmptyPanel
+          lobbyState={props.lobbyState}
+          ws={props.ws}
+          setLobbyState={props.setLobbyState}
+        />
+      );
   }
 }
 

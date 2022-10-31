@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GameBoard from './GameBoard/GameBoard';
 import InfoPanel from './InfoPanel/InfoPanel';
 import './Game.css';
+import { LobbyJoinedMessage, ServerMessage } from '../utils/Message';
 
 export const BOARD_SIZE = 15;
 
@@ -39,6 +40,14 @@ function Game() {
     ws.onmessage = (event) => {
       // TODO: update necessary state
       console.log(event);
+      const serverMessage = new ServerMessage().parse(event.data);
+      if (serverMessage instanceof LobbyJoinedMessage) {
+        setLobbyState({
+          ...lobbyState,
+          lobbyStatus: serverMessage.lobbyStatus,
+          lobbyId: serverMessage.lobbyId
+        });
+      }
     };
   });
 
@@ -49,7 +58,11 @@ function Game() {
         myPieceType={myPieceType}
         onChange={setPieces}
       />
-      <InfoPanel lobbyState={lobbyState} ws={ws} onChange={setLobbyState} />
+      <InfoPanel
+        lobbyState={lobbyState}
+        ws={ws}
+        setLobbyState={setLobbyState}
+      />
     </div>
   );
 }
@@ -98,6 +111,8 @@ export enum LobbyStatus {
 
 export class LobbyState {
   lobbyStatus: LobbyStatus;
+  isCreator: boolean = true;
+  lobbyId?: string;
 
   constructor(lobbyStatus: LobbyStatus) {
     this.lobbyStatus = lobbyStatus;

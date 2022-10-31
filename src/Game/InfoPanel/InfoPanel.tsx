@@ -8,7 +8,7 @@ import PreGamePanel from './PreGamePanel';
 function InfoPanel(props: {
   lobbyState: LobbyState;
   ws: WebSocket;
-  onChange: any;
+  setLobbyState: any;
 }) {
   /**
    * Panel displaying lobby/game info
@@ -16,22 +16,27 @@ function InfoPanel(props: {
    * Includes: lobbyState
    */
 
+  let infoPanelContents;
   switch (props.lobbyState.lobbyStatus) {
     case LobbyStatus.LOBBY_EMPTY:
     case LobbyStatus.ONE_PLAYER_WAITING:
     case LobbyStatus.TWO_PLAYERS_WAITING:
-      return (
+      infoPanelContents = (
         <PreGamePanel
           lobbyState={props.lobbyState}
           ws={props.ws}
-          onChange={props.onChange}
+          setLobbyState={props.setLobbyState}
         />
       );
+      break;
     case LobbyStatus.GAME_STARTED:
-      return <InGamePanel />;
+      infoPanelContents = <InGamePanel />;
+      break;
     case LobbyStatus.GAME_FINISHED:
-      return <PostGamePanel />;
+      infoPanelContents = <PostGamePanel />;
   }
+
+  return <div className='InfoPanel'>{infoPanelContents}</div>;
 }
 
 export default InfoPanel;

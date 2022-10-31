@@ -4,7 +4,11 @@ import { LobbyState, PieceType } from '../Game';
 import './InfoPanel.css';
 import JoinLobbyForm from './JoinLobbyForm';
 
-function LobbyEmptyPanel(props: { ws: WebSocket; onChange: any }) {
+function LobbyEmptyPanel(props: {
+  lobbyState: LobbyState;
+  ws: WebSocket;
+  setLobbyState: any;
+}) {
   /**
    * Panel displaying pre-lobby info
    * Includes: create/join lobby flows
@@ -25,7 +29,11 @@ function LobbyEmptyPanel(props: { ws: WebSocket; onChange: any }) {
         Create Lobby
       </button>
       <hr className='rounded' />
-      <JoinLobbyForm ws={props.ws} onChange={props.onChange} />
+      <JoinLobbyForm
+        lobbyState={props.lobbyState}
+        ws={props.ws}
+        setLobbyState={props.setLobbyState}
+      />
     </div>
   );
 }
