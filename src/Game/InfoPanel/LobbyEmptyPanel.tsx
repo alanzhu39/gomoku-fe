@@ -1,29 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { CreateLobbyMessage } from '../../utils/Message';
 import { LobbyState, PieceType } from '../Game';
 import './InfoPanel.css';
+import JoinLobbyForm from './JoinLobbyForm';
 
-function LobbyEmptyPanel() {
+function LobbyEmptyPanel(props: { ws: WebSocket; onChange: any }) {
   /**
    * Panel displaying pre-lobby info
    * Includes: create/join lobby flows
    */
 
+  function onCreateLobby() {
+    // Send WS message
+    props.ws.send(new CreateLobbyMessage().toString());
+  }
+
   return (
     <div className='LobbyEmptyPanel'>
       Start a game!
-      <button className='InfoPanelButton CreateLobbyButton'>
+      <button
+        className='InfoPanelButton CreateLobbyButton'
+        onClick={onCreateLobby}
+      >
         Create Lobby
       </button>
-      {/* <hr className='rounded' />
-      <form className='JoinLobbyForm'>
-        <label className='LobbyIdLabel'>
-          Lobby Id:
-          <input type='text' className='LobbyIdInput' value='value' />
-        </label>
-        <button type='submit' className='InfoPanelButton JoinLobbyButton'>
-          Join Lobby
-        </button>
-      </form> */}
+      <hr className='rounded' />
+      <JoinLobbyForm ws={props.ws} onChange={props.onChange} />
     </div>
   );
 }

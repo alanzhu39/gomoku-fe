@@ -7,7 +7,7 @@ export const BOARD_SIZE = 15;
 
 function Game() {
   // TODO: update ws URL
-  // const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
+  const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
 
   // GameBoard state
   // Initialize pieces
@@ -36,9 +36,10 @@ function Game() {
 
   useEffect(() => {
     // Initialize ws
-    // ws.onmessage = (event) => {
-    //   // TODO: update necessary state
-    // };
+    ws.onmessage = (event) => {
+      // TODO: update necessary state
+      console.log(event);
+    };
   });
 
   return (
@@ -48,7 +49,7 @@ function Game() {
         myPieceType={myPieceType}
         onChange={setPieces}
       />
-      <InfoPanel lobbyState={lobbyState} onChange={setLobbyState} />
+      <InfoPanel lobbyState={lobbyState} ws={ws} onChange={setLobbyState} />
     </div>
   );
 }
