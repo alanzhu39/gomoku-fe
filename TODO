@@ -3,6 +3,13 @@ TODO:
 - Responsive sizing
 
 10/30/22: trying to get some hours
+TODO:
+- Game start flow
+- Updating grid state, sending move messages
+- Game ending flow, getting result
+- Foolproof for edge cases, buggy flows
+
+Finished:
 - State change: so we SEND websocket message on events
 - Parse websocket responses to actually update state?
 - State change events:
