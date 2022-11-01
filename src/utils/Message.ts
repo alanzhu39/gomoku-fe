@@ -1,4 +1,10 @@
-import { LobbyState, LobbyStatus, MoveType, PlayerMove } from '../Game/Game';
+import {
+  LobbyState,
+  LobbyStatus,
+  MoveType,
+  PieceType,
+  PlayerMove
+} from '../Game/Game';
 
 export interface ClientMessage {
   toString: () => string;
@@ -59,6 +65,10 @@ export class ServerMessage {
         const lobbyId = splitMessage[1];
         return new LobbyStartedMessage(lobbyId);
       }
+      case 'GAME_MOVE': {
+        const moveData = splitMessage[1].split(':');
+        return new LobbyGameMoveMessage(this.getPlayerMove(moveData));
+      }
       default:
         return new ServerMessage();
     }
@@ -77,6 +87,24 @@ export class ServerMessage {
       default:
         return LobbyStatus.LOBBY_EMPTY;
     }
+  }
+
+  getPlayerMove(moveData: string[]): PlayerMove {
+    let pieceType = PieceType.EMPTY;
+    if (moveData[0] === 'BLACK') {
+      pieceType = PieceType.BLACK;
+    } else if (moveData[0] === 'WHITE') {
+      pieceType = PieceType.WHITE;
+    }
+
+    if (moveData[1] === 'RESIGN')
+      return new PlayerMove(pieceType, MoveType.RESIGN);
+    const charCodeA = 97;
+    const col = moveData[1][0];
+    const row = moveData[1].slice(1);
+    const i = parseInt(row) - 1;
+    const j = col.charCodeAt(0) - charCodeA;
+    return new PlayerMove(pieceType, MoveType.PIECE, [i, j]);
   }
 }
 
@@ -98,5 +126,14 @@ export class LobbyStartedMessage extends ServerMessage {
   constructor(lobbyId: string) {
     super();
     this.lobbyId = lobbyId;
+  }
+}
+
+export class LobbyGameMoveMessage extends ServerMessage {
+  playerMove: PlayerMove;
+
+  constructor(playerMove: PlayerMove) {
+    super();
+    this.playerMove = playerMove;
   }
 }

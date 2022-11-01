@@ -3,6 +3,7 @@ import GameBoard from './GameBoard/GameBoard';
 import InfoPanel from './InfoPanel/InfoPanel';
 import './Game.css';
 import {
+  LobbyGameMoveMessage,
   LobbyJoinedMessage,
   LobbyStartedMessage,
   ServerMessage
@@ -20,13 +21,14 @@ function Game() {
   for (let i = 0; i < BOARD_SIZE; i++) {
     initPieces[i] = [];
     for (let j = 0; j < BOARD_SIZE; j++) {
-      if (i === j) {
-        initPieces[i][j] = PieceType.WHITE;
-      } else if (i === BOARD_SIZE - j - 1) {
-        initPieces[i][j] = PieceType.WHITE;
-      } else {
-        initPieces[i][j] = PieceType.EMPTY;
-      }
+      initPieces[i][j] = PieceType.EMPTY;
+      // if (i === j) {
+      //   initPieces[i][j] = PieceType.WHITE;
+      // } else if (i === BOARD_SIZE - j - 1) {
+      //   initPieces[i][j] = PieceType.WHITE;
+      // } else {
+      //   initPieces[i][j] = PieceType.EMPTY;
+      // }
     }
   }
   const [pieces, setPieces] = useState(initPieces);
@@ -60,6 +62,8 @@ function Game() {
           lobbyStatus: serverMessage.lobbyStatus,
           lobbyId: serverMessage.lobbyId
         });
+      } else if (serverMessage instanceof LobbyGameMoveMessage) {
+        setMovesList([...movesList, serverMessage.playerMove]);
       }
     };
   });
