@@ -3,11 +3,26 @@ TODO:
 - Responsive sizing
 - Cleanup: comments, todo, fixme, test
 
+Bugfixes:
+- Use empty piece hover if game is not yet started
+- Current player turn indicator
+- More game state? (eg. which player the user is, to more easily track myPiece and currTurn)
+- Update UI (waiting lobby panels, etc.)
+- Bad inputs to BE (crashes threads, moreso a BE requirement)
+
 10/31/22:
-In progress:
-- Displaying in-game info
-- Adding reactivity to game board
+TODO:
 - Add labels to game board
+- Game finishing flow
+
+In progress:
+
+Finished:
+- Basic game start flow
+- Basic game board reactivity to player moves
+- In game info:
+  - basic players panel
+  - Moves list display
 
 
 
