@@ -1,3 +1,5 @@
+@import '../../App.css';
+
 .InfoPanel {
   color: #222831;
   background-color: #eeeeee;
@@ -23,6 +25,36 @@
   flex-direction: column;
   gap: 30px;
   word-wrap: break-word;
+}
+
+.PlayersPanel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #222831;
+}
+
+.PlayerCard {
+  padding: 5%;
+  gap: 5%;
+  border: 1px solid #222831;
+  display: flex;
+  align-items: center;
+  font-size: large;
+}
+
+.PlayerPiece {
+  min-width: 24px;
+  height: 24px;
+  border: 1px solid var(--piece-border-color);
+  border-radius: 13px;
+}
+
+.PlayerPiece[data-piece-type='black'] {
+  background-color: var(--piece-black-color);
+}
+
+.PlayerPiece[data-piece-type='white'] {
+  background-color: var(--piece-white-color);
 }
 
 hr.rounded {

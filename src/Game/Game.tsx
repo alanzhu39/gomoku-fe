@@ -38,6 +38,10 @@ function Game() {
   const [lobbyState, setLobbyState] = useState(
     new LobbyState(LobbyStatus.LOBBY_EMPTY)
   );
+  // TEST
+  // const [lobbyState, setLobbyState] = useState(
+  //   new LobbyState(LobbyStatus.GAME_STARTED)
+  // );
 
   useEffect(() => {
     // Initialize ws

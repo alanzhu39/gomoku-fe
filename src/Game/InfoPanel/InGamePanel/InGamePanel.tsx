@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LobbyState, PieceType, PlayerMove } from '../../Game';
+import PlayersPanel from './PlayersPanel';
 
 function InGamePanel(props: {
   movesList: PlayerMove[];
@@ -12,7 +13,11 @@ function InGamePanel(props: {
    * Includes: MovesList, buttons for game actions (resign, etc.)
    */
 
-  return <div className='InGamePanel'>{/* TODO */}</div>;
+  return (
+    <div className='InGamePanel'>
+      <PlayersPanel lobbyState={props.lobbyState} />
+    </div>
+  );
 }
 
 export default InGamePanel;

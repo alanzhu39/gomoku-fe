@@ -1,10 +1,4 @@
-:root {
-  --board-background-color: #ffd369;
-  --board-grid-color: #222831;
-  --piece-white-color: #eee;
-  --piece-black-color: #222;
-  --piece-border-color: #000;
-}
+@import '../../App.css';
 
 .GameBoard {
   background-color: var(--board-background-color);
