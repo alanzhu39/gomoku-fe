@@ -1,4 +1,4 @@
-import { LobbyState, LobbyStatus } from '../Game/Game';
+import { LobbyState, LobbyStatus, MoveType, PlayerMove } from '../Game/Game';
 
 export interface ClientMessage {
   toString: () => string;
@@ -25,6 +25,22 @@ export class JoinLobbyMessage implements ClientMessage {
 export class StartGameMessage implements ClientMessage {
   toString() {
     return 'START_LOBBY';
+  }
+}
+
+export class PlayerMoveMessage implements ClientMessage {
+  playerMove: PlayerMove;
+
+  constructor(playerMove: PlayerMove) {
+    this.playerMove = playerMove;
+  }
+
+  toString() {
+    if (this.playerMove.moveType === MoveType.RESIGN) {
+      return 'PLAYER_MOVE::RESIGN';
+    } else {
+      return `PLAYER_MOVE::PIECE:${this.playerMove.toString()}`;
+    }
   }
 }
 

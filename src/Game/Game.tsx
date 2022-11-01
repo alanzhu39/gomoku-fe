@@ -30,24 +30,19 @@ function Game() {
     }
   }
   const [pieces, setPieces] = useState(initPieces);
-  const [myPieceType, setMyPieceType] = useState(PieceType.EMPTY);
 
   // InfoPanel state
-  const initMovesList: PlayerMove[] = [
-    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [0, 0]),
-    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [1, 1]),
-    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [3, 5]),
-    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [12, 0]),
-    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [15, 15])
-  ];
+  // const initMovesList: PlayerMove[] = [
+  //   new PlayerMove(PieceType.BLACK, MoveType.PIECE, [0, 0]),
+  //   new PlayerMove(PieceType.WHITE, MoveType.PIECE, [1, 1]),
+  //   new PlayerMove(PieceType.BLACK, MoveType.PIECE, [3, 5]),
+  //   new PlayerMove(PieceType.WHITE, MoveType.PIECE, [12, 0]),
+  //   new PlayerMove(PieceType.BLACK, MoveType.PIECE, [15, 15])
+  // ];
+  const initMovesList: PlayerMove[] = [];
   const [movesList, setMovesList] = useState(initMovesList);
-  // const [lobbyState, setLobbyState] = useState(
-  //   new LobbyState(LobbyStatus.LOBBY_EMPTY)
-  // );
-
-  // TEST
   const [lobbyState, setLobbyState] = useState(
-    new LobbyState(LobbyStatus.GAME_STARTED)
+    new LobbyState(LobbyStatus.LOBBY_EMPTY)
   );
 
   useEffect(() => {
@@ -73,7 +68,8 @@ function Game() {
     <div className='Game'>
       <GameBoard
         pieces={pieces}
-        myPieceType={myPieceType}
+        myPieceType={lobbyState.isCreator ? PieceType.BLACK : PieceType.WHITE}
+        ws={ws}
         onChange={setPieces}
       />
       <InfoPanel
@@ -127,8 +123,8 @@ export class PlayerMove {
         return 'Resigns';
       case MoveType.PIECE:
         if (this.coordinate == null) return '';
-        return `${String.fromCharCode(this.coordinate[0] + charCodeA)}${
-          this.coordinate[1] + 1
+        return `${String.fromCharCode(this.coordinate[1] + charCodeA)}${
+          this.coordinate[0] + 1
         }`;
     }
   }

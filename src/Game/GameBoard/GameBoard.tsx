@@ -1,5 +1,6 @@
 import React from 'react';
-import { PieceType, BOARD_SIZE } from '../Game';
+import { PlayerMoveMessage } from '../../utils/Message';
+import { PieceType, BOARD_SIZE, PlayerMove, MoveType } from '../Game';
 import './GameBoard.css';
 
 const GRID_SIZE = 40;
@@ -60,6 +61,7 @@ function BoardIntersection(props: {
 function GameBoard(props: {
   pieces: PieceType[][];
   myPieceType: PieceType;
+  ws: WebSocket;
   onChange: any;
 }) {
   /**
@@ -67,20 +69,27 @@ function GameBoard(props: {
    * Includes base board, and pieces
    */
 
-  const onPlacePiece = () => {
-    // TODO: update state via pieces onChange
+  const onPlacePiece = (row: number, col: number) => {
+    // Send ws event
+    props.ws.send(
+      new PlayerMoveMessage(
+        new PlayerMove(props.myPieceType, MoveType.PIECE, [row, col])
+      ).toString()
+    );
   };
 
   const intersections = [];
   for (let i = 0; i < 15; i++)
     for (let j = 0; j < 15; j++)
       intersections.push(
-        BoardIntersection({
-          row: i,
-          col: j,
-          pieceType: props.pieces[i][j],
-          ghostPieceType: props.myPieceType
-        })
+        <div key={`${i}_${j}`} onClick={() => onPlacePiece(i, j)}>
+          {BoardIntersection({
+            row: i,
+            col: j,
+            pieceType: props.pieces[i][j],
+            ghostPieceType: props.myPieceType
+          })}
+        </div>
       );
 
   const gameBoardStyle = {
@@ -97,9 +106,7 @@ function GameBoard(props: {
   return (
     <div className='GameBoard' style={gameBoardStyle}>
       <div className='Board-grid' style={boardGridStyle}>
-        {intersections.map((intersection, index) => (
-          <div key={index}>{intersection}</div>
-        ))}
+        {intersections}
       </div>
     </div>
   );
