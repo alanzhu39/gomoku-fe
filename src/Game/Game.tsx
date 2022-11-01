@@ -63,7 +63,21 @@ function Game() {
           lobbyId: serverMessage.lobbyId
         });
       } else if (serverMessage instanceof LobbyGameMoveMessage) {
-        setMovesList([...movesList, serverMessage.playerMove]);
+        const playerMove = serverMessage.playerMove;
+        setMovesList([...movesList, playerMove]);
+        if (
+          playerMove.moveType === MoveType.PIECE &&
+          playerMove.coordinate !== null &&
+          playerMove.coordinate !== undefined
+        ) {
+          const newPieces = [];
+          for (let i = 0; i < pieces.length; i++) {
+            newPieces[i] = pieces[i].slice();
+          }
+          newPieces[playerMove.coordinate[0]][playerMove.coordinate[1]] =
+            playerMove.pieceType;
+          setPieces(newPieces);
+        }
       }
     };
   });
@@ -74,7 +88,6 @@ function Game() {
         pieces={pieces}
         myPieceType={lobbyState.isCreator ? PieceType.BLACK : PieceType.WHITE}
         ws={ws}
-        onChange={setPieces}
       />
       <InfoPanel
         movesList={movesList}

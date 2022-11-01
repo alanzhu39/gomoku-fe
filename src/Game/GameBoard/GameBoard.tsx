@@ -62,7 +62,6 @@ function GameBoard(props: {
   pieces: PieceType[][];
   myPieceType: PieceType;
   ws: WebSocket;
-  onChange: any;
 }) {
   /**
    * Representation of Gomoku game board
