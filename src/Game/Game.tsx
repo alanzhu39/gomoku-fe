@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import GameBoard from './GameBoard/GameBoard';
 import InfoPanel from './InfoPanel/InfoPanel';
 import './Game.css';
-import { LobbyJoinedMessage, ServerMessage } from '../utils/Message';
+import {
+  LobbyJoinedMessage,
+  LobbyStartedMessage,
+  ServerMessage
+} from '../utils/Message';
 
 export const BOARD_SIZE = 15;
 
@@ -41,7 +45,10 @@ function Game() {
       // TODO: update necessary state
       console.log(event);
       const serverMessage = new ServerMessage().parse(event.data);
-      if (serverMessage instanceof LobbyJoinedMessage) {
+      if (
+        serverMessage instanceof LobbyJoinedMessage ||
+        serverMessage instanceof LobbyStartedMessage
+      ) {
         setLobbyState({
           ...lobbyState,
           lobbyStatus: serverMessage.lobbyStatus,
@@ -59,6 +66,7 @@ function Game() {
         onChange={setPieces}
       />
       <InfoPanel
+        movesList={movesList}
         lobbyState={lobbyState}
         ws={ws}
         setLobbyState={setLobbyState}

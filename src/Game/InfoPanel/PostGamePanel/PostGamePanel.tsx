@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PieceType } from '../Game';
+import { PieceType } from '../../Game';
 
 function PostGamePanel() {
   /**

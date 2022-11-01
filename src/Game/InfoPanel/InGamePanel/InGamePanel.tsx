@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PieceType } from '../Game';
+import { LobbyState, PieceType, PlayerMove } from '../../Game';
 
-function InGamePanel() {
+function InGamePanel(props: {
+  movesList: PlayerMove[];
+  lobbyState: LobbyState;
+  ws: WebSocket;
+  setLobbyState: any;
+}) {
   /**
    * Panel displaying in-game info
    * Includes: MovesList, buttons for game actions (resign, etc.)

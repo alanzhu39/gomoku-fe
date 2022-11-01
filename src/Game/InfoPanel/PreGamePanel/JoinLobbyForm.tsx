@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { JoinLobbyMessage } from '../../utils/Message';
-import { LobbyState } from '../Game';
-import './InfoPanel.css';
+import { JoinLobbyMessage } from '../../../utils/Message';
+import { LobbyState } from '../../Game';
+import '../InfoPanel.css';
 
 function JoinLobbyForm(props: {
   lobbyState: LobbyState;

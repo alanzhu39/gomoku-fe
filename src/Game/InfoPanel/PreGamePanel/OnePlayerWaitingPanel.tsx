@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LobbyState } from '../Game';
-import './InfoPanel.css';
+import { LobbyState } from '../../Game';
+import '../InfoPanel.css';
 
 function OnePlayerWaitingPanel(props: {
   lobbyState: LobbyState;

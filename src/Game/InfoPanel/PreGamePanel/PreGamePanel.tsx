@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LobbyState, LobbyStatus, PieceType } from '../Game';
+import { LobbyState, LobbyStatus, PieceType } from '../../Game';
 import LobbyEmptyPanel from './LobbyEmptyPanel';
 import TwoPlayerWaitingPanel from './TwoPlayerWaitingPanel';
 import OnePlayerWaitingPanel from './OnePlayerWaitingPanel';

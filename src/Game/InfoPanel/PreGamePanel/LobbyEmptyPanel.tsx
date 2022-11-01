@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CreateLobbyMessage } from '../../utils/Message';
-import { LobbyState, PieceType } from '../Game';
-import './InfoPanel.css';
+import { CreateLobbyMessage } from '../../../utils/Message';
+import { LobbyState, PieceType } from '../../Game';
+import '../InfoPanel.css';
 import JoinLobbyForm from './JoinLobbyForm';
 
 function LobbyEmptyPanel(props: {

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LobbyState, LobbyStatus } from '../Game';
-import InGamePanel from './InGamePanel';
-import PostGamePanel from './PostGamePanel';
-import PreGamePanel from './PreGamePanel';
+import { LobbyState, LobbyStatus, PlayerMove } from '../Game';
+import InGamePanel from './InGamePanel/InGamePanel';
+import PostGamePanel from './PostGamePanel/PostGamePanel';
+import PreGamePanel from './PreGamePanel/PreGamePanel';
 
 // TODO: onChange typing
 function InfoPanel(props: {
+  movesList: PlayerMove[];
   lobbyState: LobbyState;
   ws: WebSocket;
   setLobbyState: any;
@@ -30,7 +31,14 @@ function InfoPanel(props: {
       );
       break;
     case LobbyStatus.GAME_STARTED:
-      infoPanelContents = <InGamePanel />;
+      infoPanelContents = (
+        <InGamePanel
+          movesList={props.movesList}
+          lobbyState={props.lobbyState}
+          ws={props.ws}
+          setLobbyState={props.setLobbyState}
+        />
+      );
       break;
     case LobbyStatus.GAME_FINISHED:
       infoPanelContents = <PostGamePanel />;

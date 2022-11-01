@@ -47,6 +47,10 @@ hr.rounded {
   background-color: #85c88a;
 }
 
+.StartGameButton {
+  background-color: #85c88a;
+}
+
 .JoinLobbyForm {
   display: flex;
   flex-direction: column;

@@ -22,8 +22,14 @@ export class JoinLobbyMessage implements ClientMessage {
   }
 }
 
+export class StartGameMessage implements ClientMessage {
+  toString() {
+    return 'START_LOBBY';
+  }
+}
+
 export class ServerMessage {
-  parse(serverMessage: string) {
+  parse(serverMessage: string): ServerMessage {
     const splitMessage = serverMessage.split('::');
     const serverMessageType = splitMessage[0];
     switch (serverMessageType) {
@@ -33,6 +39,12 @@ export class ServerMessage {
         const lobbyStatus = this.getLobbyStatus(lobbyData[1]);
         return new LobbyJoinedMessage(lobbyId, lobbyStatus);
       }
+      case 'LOBBY_STARTED': {
+        const lobbyId = splitMessage[1];
+        return new LobbyStartedMessage(lobbyId);
+      }
+      default:
+        return new ServerMessage();
     }
   }
 
@@ -60,5 +72,15 @@ export class LobbyJoinedMessage extends ServerMessage {
     super();
     this.lobbyId = lobbyId;
     this.lobbyStatus = lobbyStatus;
+  }
+}
+
+export class LobbyStartedMessage extends ServerMessage {
+  lobbyId: string;
+  lobbyStatus: LobbyStatus = LobbyStatus.GAME_STARTED;
+
+  constructor(lobbyId: string) {
+    super();
+    this.lobbyId = lobbyId;
   }
 }
