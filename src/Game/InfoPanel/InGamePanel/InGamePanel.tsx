@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LobbyState, PieceType, PlayerMove } from '../../Game';
+import GameActionsPanel from './GameActionsPanel';
+import MovesListPanel from './MovesListPanel';
 import PlayersPanel from './PlayersPanel';
+import '../InfoPanel.css';
 
 function InGamePanel(props: {
   movesList: PlayerMove[];
@@ -16,6 +19,9 @@ function InGamePanel(props: {
   return (
     <div className='InGamePanel'>
       <PlayersPanel lobbyState={props.lobbyState} />
+      <MovesListPanel movesList={props.movesList} />
+      <div className='spacer' />
+      <GameActionsPanel ws={props.ws} />
     </div>
   );
 }

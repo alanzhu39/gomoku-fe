@@ -33,15 +33,22 @@ function Game() {
   const [myPieceType, setMyPieceType] = useState(PieceType.EMPTY);
 
   // InfoPanel state
-  const initMovesList: PlayerMove[] = [];
+  const initMovesList: PlayerMove[] = [
+    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [0, 0]),
+    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [1, 1]),
+    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [3, 5]),
+    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [12, 0]),
+    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [15, 15])
+  ];
   const [movesList, setMovesList] = useState(initMovesList);
-  const [lobbyState, setLobbyState] = useState(
-    new LobbyState(LobbyStatus.LOBBY_EMPTY)
-  );
-  // TEST
   // const [lobbyState, setLobbyState] = useState(
-  //   new LobbyState(LobbyStatus.GAME_STARTED)
+  //   new LobbyState(LobbyStatus.LOBBY_EMPTY)
   // );
+
+  // TEST
+  const [lobbyState, setLobbyState] = useState(
+    new LobbyState(LobbyStatus.GAME_STARTED)
+  );
 
   useEffect(() => {
     // Initialize ws
@@ -104,11 +111,25 @@ export class PlayerMove {
     this.moveType = moveType;
     switch (this.moveType) {
       case MoveType.PIECE: {
-        if (!(coordinate == null || coordinate === undefined)) {
+        if (coordinate == null || coordinate === undefined) {
           throw new Error('Bad player move');
         }
         this.coordinate = coordinate;
       }
+    }
+  }
+
+  toString() {
+    if (this.pieceType === PieceType.EMPTY) return '';
+    const charCodeA = 97;
+    switch (this.moveType) {
+      case MoveType.RESIGN:
+        return 'Resigns';
+      case MoveType.PIECE:
+        if (this.coordinate == null) return '';
+        return `${String.fromCharCode(this.coordinate[0] + charCodeA)}${
+          this.coordinate[1] + 1
+        }`;
     }
   }
 }
