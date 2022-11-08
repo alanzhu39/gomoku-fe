@@ -27,7 +27,7 @@
 .BoardLabel[data-position='left'] {
   grid-column: 1;
   grid-row: calc(var(--index) + 2);
-  margin-left: -6px;
+  justify-self: right;
 }
 
 .BoardLabel[data-position='right'] {
