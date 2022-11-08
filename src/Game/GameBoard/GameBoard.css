@@ -3,14 +3,48 @@
 .GameBoard {
   background-color: var(--board-background-color);
   background-image: url('/src/assets/wood-pattern.png');
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns:
+    var(--label-size) repeat(var(--board-size), var(--grid-size))
+    var(--label-size);
+  grid-template-rows:
+    var(--label-size) repeat(var(--board-size), var(--grid-size))
+    var(--label-size);
+  padding: 26px;
+}
+
+.BoardLabel {
+  color: var(--board-grid-color);
+  font-size: 24px;
+  align-self: center;
+}
+
+.BoardLabel[data-position='top'] {
+  grid-row: 1;
+  grid-column: calc(var(--index) + 2);
+}
+
+.BoardLabel[data-position='left'] {
+  grid-column: 1;
+  grid-row: calc(var(--index) + 2);
+  margin-left: -6px;
+}
+
+.BoardLabel[data-position='right'] {
+  grid-column: calc(var(--board-size) + 2);
+  grid-row: calc(var(--index) + 2);
+}
+
+.BoardLabel[data-position='bottom'] {
+  grid-row: calc(var(--board-size) + 2);
+  grid-column: calc(var(--index) + 2);
 }
 
 .Board-grid {
+  grid-column: 2 / span var(--board-size);
+  grid-row: 2 / span var(--board-size);
   display: grid;
-  grid-template-columns: repeat(var(--board-size), 40px);
+  grid-template-columns: repeat(var(--board-size), var(--grid-size));
 }
 
 .intersection {

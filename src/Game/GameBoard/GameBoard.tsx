@@ -78,8 +78,8 @@ function GameBoard(props: {
   };
 
   const intersections = [];
-  for (let i = 0; i < 15; i++)
-    for (let j = 0; j < 15; j++)
+  for (let i = 0; i < BOARD_SIZE; i++)
+    for (let j = 0; j < BOARD_SIZE; j++)
       intersections.push(
         <div key={`${i}_${j}`} onClick={() => onPlacePiece(i, j)}>
           {BoardIntersection({
@@ -91,19 +91,71 @@ function GameBoard(props: {
         </div>
       );
 
-  const gameBoardStyle = {
-    width: (BOARD_SIZE + 1) * GRID_SIZE,
-    height: (BOARD_SIZE + 1) * GRID_SIZE
+  let labels: JSX.Element[] = [];
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    const charCodeA = 97;
+    const letterLabel = String.fromCharCode(charCodeA + i);
+    const numberLabel = i + 1;
+    const indexStyle = {
+      width: 'auto',
+      height: 'auto',
+      '--index': i
+    };
+    labels = labels.concat([
+      <div
+        className='BoardLabel'
+        key={`t_${i}`}
+        data-position='top'
+        style={indexStyle}
+      >
+        {letterLabel}
+      </div>,
+      <div
+        className='BoardLabel'
+        key={`l_${i}`}
+        data-position='left'
+        style={indexStyle}
+      >
+        {numberLabel}
+      </div>,
+      <div
+        className='BoardLabel'
+        key={`r_${i}`}
+        data-position='right'
+        style={indexStyle}
+      >
+        {numberLabel}
+      </div>,
+      <div
+        className='BoardLabel'
+        key={`b_${i}`}
+        data-position='bottom'
+        style={indexStyle}
+      >
+        {letterLabel}
+      </div>
+    ]);
+  }
+
+  const boardGridSize = BOARD_SIZE * GRID_SIZE;
+  const boardGridStyle = {
+    width: boardGridSize,
+    height: boardGridSize,
+    '--grid-size': `${GRID_SIZE}px`,
+    '--board-size': BOARD_SIZE
   };
 
-  const boardGridStyle = {
-    width: BOARD_SIZE * GRID_SIZE,
-    height: BOARD_SIZE * GRID_SIZE,
+  const gameBoardStyle = {
+    width: (BOARD_SIZE + 1) * GRID_SIZE,
+    height: (BOARD_SIZE + 1) * GRID_SIZE,
+    '--label-size': `${GRID_SIZE / 2}px`,
+    '--grid-size': `${GRID_SIZE}px`,
     '--board-size': BOARD_SIZE
   };
 
   return (
     <div className='GameBoard' style={gameBoardStyle}>
+      {labels}
       <div className='Board-grid' style={boardGridStyle}>
         {intersections}
       </div>

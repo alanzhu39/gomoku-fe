@@ -10,6 +10,15 @@ Bugfixes:
 - Update UI (waiting lobby panels, etc.)
 - Bad inputs to BE (crashes threads, moreso a BE requirement)
 
+11/7/22:
+In progress:
+- Game finished flow
+
+Finished:
+- Add labels to game board
+
+
+
 10/31/22:
 TODO:
 - Add labels to game board
