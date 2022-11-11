@@ -12,6 +12,7 @@ Bugfixes:
 
 11/7/22:
 In progress:
+- Fix messages to use "LOBBY_STATUS"
 - Game finished flow
 
 Finished:
