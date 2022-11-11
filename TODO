@@ -6,9 +6,26 @@ TODO:
 Bugfixes:
 - Use empty piece hover if game is not yet started
 - Current player turn indicator
-- More game state? (eg. which player the user is, to more easily track myPiece and currTurn)
+- More/better game state? (eg. which player the user is, to more easily track myPiece and currTurn)
 - Update UI (waiting lobby panels, etc.)
 - Bad inputs to BE (crashes threads, moreso a BE requirement)
+- connection based on session token, so user/connection can refresh
+
+11/10/22:
+In progress:
+- Game finished flow
+
+Game finished flow:
+- game winning move
+- resigning
+
+Lobby closed flow:
+- 
+
+Finished:
+- Fix messages to use "LOBBY_STATUS"
+
+
 
 11/7/22:
 In progress:

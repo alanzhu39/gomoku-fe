@@ -3,6 +3,7 @@ import { LobbyState, LobbyStatus, PlayerMove } from '../Game';
 import InGamePanel from './InGamePanel/InGamePanel';
 import PostGamePanel from './PostGamePanel/PostGamePanel';
 import PreGamePanel from './PreGamePanel/PreGamePanel';
+import './InfoPanel.css';
 
 // TODO: onChange typing
 function InfoPanel(props: {
@@ -41,7 +42,14 @@ function InfoPanel(props: {
       );
       break;
     case LobbyStatus.GAME_FINISHED:
-      infoPanelContents = <PostGamePanel />;
+      infoPanelContents = (
+        <PostGamePanel
+          movesList={props.movesList}
+          lobbyState={props.lobbyState}
+          ws={props.ws}
+          setLobbyState={props.setLobbyState}
+        />
+      );
   }
 
   return <div className='InfoPanel'>{infoPanelContents}</div>;

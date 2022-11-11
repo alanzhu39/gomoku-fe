@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { JoinLobbyMessage } from '../../../utils/Message';
-import { LobbyState } from '../../Game';
+import { LobbyState, PieceType } from '../../Game';
 import '../InfoPanel.css';
 
 function JoinLobbyForm(props: {
@@ -21,7 +21,8 @@ function JoinLobbyForm(props: {
     // Update creator status
     props.setLobbyState({
       ...props.lobbyState,
-      isCreator: false
+      isCreator: false,
+      myPieceType: PieceType.WHITE
     });
 
     event.preventDefault();

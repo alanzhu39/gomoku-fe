@@ -55,15 +55,11 @@ export class ServerMessage {
     const splitMessage = serverMessage.split('::');
     const serverMessageType = splitMessage[0];
     switch (serverMessageType) {
-      case 'LOBBY_JOINED': {
+      case 'LOBBY_STATUS': {
         const lobbyData = splitMessage[1].split(':');
         const lobbyId = lobbyData[0];
         const lobbyStatus = this.getLobbyStatus(lobbyData[1]);
-        return new LobbyJoinedMessage(lobbyId, lobbyStatus);
-      }
-      case 'LOBBY_STARTED': {
-        const lobbyId = splitMessage[1];
-        return new LobbyStartedMessage(lobbyId);
+        return new LobbyStatusMessage(lobbyId, lobbyStatus);
       }
       case 'GAME_MOVE': {
         const moveData = splitMessage[1].split(':');
@@ -108,7 +104,7 @@ export class ServerMessage {
   }
 }
 
-export class LobbyJoinedMessage extends ServerMessage {
+export class LobbyStatusMessage extends ServerMessage {
   lobbyId: string;
   lobbyStatus: LobbyStatus;
 
@@ -116,16 +112,6 @@ export class LobbyJoinedMessage extends ServerMessage {
     super();
     this.lobbyId = lobbyId;
     this.lobbyStatus = lobbyStatus;
-  }
-}
-
-export class LobbyStartedMessage extends ServerMessage {
-  lobbyId: string;
-  lobbyStatus: LobbyStatus = LobbyStatus.GAME_STARTED;
-
-  constructor(lobbyId: string) {
-    super();
-    this.lobbyId = lobbyId;
   }
 }
 
