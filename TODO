@@ -29,6 +29,7 @@ Lobby closed flow:
 - 
 
 Finished:
+- Game finished flow working! (including rematch and leave lobby)
 - Fix messages to use "LOBBY_STATUS"
 - post game panel skeleton
 - moves panel scrolling
