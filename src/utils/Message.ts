@@ -34,6 +34,18 @@ export class StartGameMessage implements ClientMessage {
   }
 }
 
+export class LeaveLobbyMessage implements ClientMessage {
+  toString() {
+    return 'LEAVE_LOBBY';
+  }
+}
+
+export class RematchMessage implements ClientMessage {
+  toString() {
+    return 'REMATCH';
+  }
+}
+
 export class PlayerMoveMessage implements ClientMessage {
   playerMove: PlayerMove;
 
@@ -80,6 +92,8 @@ export class ServerMessage {
         return LobbyStatus.GAME_STARTED;
       case 'GameFinished':
         return LobbyStatus.GAME_FINISHED;
+      case 'Closed':
+        return LobbyStatus.CLOSED;
       default:
         return LobbyStatus.LOBBY_EMPTY;
     }

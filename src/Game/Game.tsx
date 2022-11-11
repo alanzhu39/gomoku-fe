@@ -11,55 +11,57 @@ import {
 export const BOARD_SIZE = 15;
 
 function Game() {
+  // Initialize state
   // TODO: update ws URL
   const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
 
-  // GameBoard state
-  // Initialize pieces
   const initPieces: PieceType[][] = [];
   for (let i = 0; i < BOARD_SIZE; i++) {
     initPieces[i] = [];
     for (let j = 0; j < BOARD_SIZE; j++) {
       initPieces[i][j] = PieceType.EMPTY;
-      // if (i === j) {
-      //   initPieces[i][j] = PieceType.WHITE;
-      // } else if (i === BOARD_SIZE - j - 1) {
-      //   initPieces[i][j] = PieceType.WHITE;
-      // } else {
-      //   initPieces[i][j] = PieceType.EMPTY;
-      // }
     }
   }
   const [pieces, setPieces] = useState(initPieces);
 
-  // InfoPanel state
-  let initMovesList: PlayerMove[] = [
-    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [0, 0]),
-    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [1, 1]),
-    new PlayerMove(PieceType.BLACK, MoveType.PIECE, [3, 5]),
-    new PlayerMove(PieceType.WHITE, MoveType.PIECE, [12, 0])
-  ];
-  for (let i = 0; i < 1; i++) {
-    initMovesList = initMovesList.concat(initMovesList);
-  }
-  // const initMovesList: PlayerMove[] = [];
+  const initMovesList: PlayerMove[] = [];
   const [movesList, setMovesList] = useState(initMovesList);
+
   const [lobbyState, setLobbyState] = useState(
-    new LobbyState(LobbyStatus.GAME_FINISHED)
+    new LobbyState(LobbyStatus.LOBBY_EMPTY)
   );
 
   useEffect(() => {
     // Initialize ws
     ws.onmessage = (event) => {
-      // TODO: update necessary state
+      // TODO: logging
       console.log(event);
       const serverMessage = new ServerMessage().parse(event.data);
       if (serverMessage instanceof LobbyStatusMessage) {
-        setLobbyState({
-          ...lobbyState,
-          lobbyStatus: serverMessage.lobbyStatus,
-          lobbyId: serverMessage.lobbyId
-        });
+        if (
+          lobbyState.lobbyStatus === LobbyStatus.GAME_FINISHED &&
+          serverMessage.lobbyStatus === LobbyStatus.GAME_STARTED
+        ) {
+          // Reset game on rematch
+          setMovesList(initMovesList);
+          setPieces(initPieces);
+          setLobbyState({
+            ...lobbyState,
+            lobbyStatus: serverMessage.lobbyStatus,
+            lobbyId: serverMessage.lobbyId,
+            myPieceType: getOppositePieceType(lobbyState.myPieceType)
+          });
+        } else if (serverMessage.lobbyStatus === LobbyStatus.CLOSED) {
+          setMovesList(initMovesList);
+          setPieces(initPieces);
+          setLobbyState(new LobbyState(LobbyStatus.LOBBY_EMPTY));
+        } else {
+          setLobbyState({
+            ...lobbyState,
+            lobbyStatus: serverMessage.lobbyStatus,
+            lobbyId: serverMessage.lobbyId
+          });
+        }
       } else if (serverMessage instanceof LobbyGameMoveMessage) {
         const playerMove = serverMessage.playerMove;
         setMovesList([...movesList, playerMove]);
@@ -97,6 +99,17 @@ export enum PieceType {
   EMPTY,
   BLACK,
   WHITE
+}
+
+export function getOppositePieceType(pieceType: PieceType) {
+  switch (pieceType) {
+    case PieceType.BLACK:
+      return PieceType.WHITE;
+    case PieceType.WHITE:
+      return PieceType.BLACK;
+    default:
+      return PieceType.EMPTY;
+  }
 }
 
 export enum MoveType {
@@ -146,7 +159,8 @@ export enum LobbyStatus {
   ONE_PLAYER_WAITING,
   TWO_PLAYERS_WAITING,
   GAME_STARTED,
-  GAME_FINISHED
+  GAME_FINISHED,
+  CLOSED
 }
 
 export class LobbyState {

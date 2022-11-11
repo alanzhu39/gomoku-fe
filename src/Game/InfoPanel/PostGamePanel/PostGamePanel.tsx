@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LobbyState, MoveType, PieceType, PlayerMove } from '../../Game';
+import {
+  getOppositePieceType,
+  LobbyState,
+  MoveType,
+  PieceType,
+  PlayerMove
+} from '../../Game';
 import MovesListPanel from '../InGamePanel/MovesListPanel';
 import PlayersPanel from '../InGamePanel/PlayersPanel';
 import WinnerPanel from './WinnerPanel';
@@ -20,7 +26,7 @@ function PostGamePanel(props: {
   if (movesList.length > 0) {
     const lastMove = movesList[movesList.length - 1];
     if (lastMove.moveType === MoveType.RESIGN) {
-      winnerPieceType = props.lobbyState.myPieceType;
+      winnerPieceType = getOppositePieceType(lastMove.pieceType);
     } else {
       winnerPieceType = lastMove.pieceType;
     }
@@ -31,7 +37,7 @@ function PostGamePanel(props: {
       <PlayersPanel lobbyState={props.lobbyState} />
       <MovesListPanel movesList={props.movesList} />
       <div className='spacer' />
-      <WinnerPanel pieceType={winnerPieceType} />
+      <WinnerPanel pieceType={winnerPieceType} ws={props.ws} />
     </div>
   );
 }

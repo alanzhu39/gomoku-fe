@@ -21,7 +21,10 @@ function InGamePanel(props: {
       <PlayersPanel lobbyState={props.lobbyState} />
       <MovesListPanel movesList={props.movesList} />
       <div className='spacer' />
-      <GameActionsPanel ws={props.ws} />
+      <GameActionsPanel
+        myPieceType={props.lobbyState.myPieceType}
+        ws={props.ws}
+      />
     </div>
   );
 }

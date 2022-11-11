@@ -10,10 +10,16 @@ Bugfixes:
 - Update UI (waiting lobby panels, etc.)
 - Bad inputs to BE (crashes threads, moreso a BE requirement)
 - connection based on session token, so user/connection can refresh
+- features
+  - highlight win?
 
 11/10/22:
 In progress:
-- Game finished flow
+- session token to maintain connections across a session
+- auto scroll moves list when new move is added
+- highlight certain UI elements
+  - current turn
+  - last move (both in list and on board)
 
 Game finished flow:
 - game winning move
@@ -24,6 +30,15 @@ Lobby closed flow:
 
 Finished:
 - Fix messages to use "LOBBY_STATUS"
+- post game panel skeleton
+- moves panel scrolling
+- filling in buttons
+  - resign button
+  - rematch button
+  - leave lobby button
+- Game finished flow
+- Adding resign move display
+- Fixing game win display on resign
 
 
 
