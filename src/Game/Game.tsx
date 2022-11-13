@@ -8,6 +8,7 @@ import {
   ServerMessage,
   SessionTokenMessage
 } from '../utils/Message';
+import { plainToClass, plainToInstance } from 'class-transformer';
 
 export const BOARD_SIZE = 15;
 
@@ -23,26 +24,14 @@ function Game() {
     }
   });
 
-  const initPieces: PieceType[][] = [];
-  for (let i = 0; i < BOARD_SIZE; i++) {
-    initPieces[i] = [];
-    for (let j = 0; j < BOARD_SIZE; j++) {
-      initPieces[i][j] = PieceType.EMPTY;
-    }
-  }
-  const [pieces, setPieces] = useState(() => {
-    const piecesState = window.localStorage.getItem('PIECES');
-    if (piecesState !== null) return JSON.parse(piecesState);
-    else return initPieces;
-  });
-  useEffect(() => {
-    window.localStorage.setItem('PIECES', JSON.stringify(pieces));
-  }, [pieces]);
-
   const initMovesList: PlayerMove[] = [];
   const [movesList, setMovesList] = useState(() => {
     const movesListState = window.localStorage.getItem('MOVES_LIST');
-    if (movesListState !== null) return JSON.parse(movesListState);
+    if (movesListState !== null)
+      return plainToInstance(
+        PlayerMove,
+        JSON.parse(movesListState) as Object[]
+      );
     else return initMovesList;
   });
   useEffect(() => {
@@ -51,7 +40,11 @@ function Game() {
 
   const [lobbyState, setLobbyState] = useState(() => {
     const lobbyStorageState = window.localStorage.getItem('LOBBY_STATE');
-    if (lobbyStorageState !== null) return JSON.parse(lobbyStorageState);
+    if (lobbyStorageState !== null)
+      return plainToInstance(
+        LobbyState,
+        JSON.parse(lobbyStorageState) as Object
+      );
     else return new LobbyState(LobbyStatus.LOBBY_EMPTY);
   });
   useEffect(() => {
@@ -76,7 +69,6 @@ function Game() {
         ) {
           // Reset game on rematch
           setMovesList(initMovesList);
-          setPieces(initPieces);
           setLobbyState({
             ...lobbyState,
             lobbyStatus: serverMessage.lobbyStatus,
@@ -85,7 +77,6 @@ function Game() {
           });
         } else if (serverMessage.lobbyStatus === LobbyStatus.CLOSED) {
           setMovesList(initMovesList);
-          setPieces(initPieces);
           setLobbyState(new LobbyState(LobbyStatus.LOBBY_EMPTY));
         } else {
           setLobbyState({
@@ -97,26 +88,17 @@ function Game() {
       } else if (serverMessage instanceof LobbyGameMoveMessage) {
         const playerMove = serverMessage.playerMove;
         setMovesList([...movesList, playerMove]);
-        if (
-          playerMove.moveType === MoveType.PIECE &&
-          playerMove.coordinate !== null &&
-          playerMove.coordinate !== undefined
-        ) {
-          const newPieces = [];
-          for (let i = 0; i < pieces.length; i++) {
-            newPieces[i] = pieces[i].slice();
-          }
-          newPieces[playerMove.coordinate[0]][playerMove.coordinate[1]] =
-            playerMove.pieceType;
-          setPieces(newPieces);
-        }
       }
     };
   });
 
   return (
     <div className='Game'>
-      <GameBoard pieces={pieces} myPieceType={lobbyState.myPieceType} ws={ws} />
+      <GameBoard
+        movesList={movesList}
+        myPieceType={lobbyState.myPieceType}
+        ws={ws}
+      />
       <InfoPanel
         movesList={movesList}
         lobbyState={lobbyState}

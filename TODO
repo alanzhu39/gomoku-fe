@@ -19,6 +19,7 @@ In progress:
 - improving UI: highlighting certain elements
   - current turn
   - last move (both in list and on board)
+  - auto scroll moves list
 - hosting options
 
 Finished:

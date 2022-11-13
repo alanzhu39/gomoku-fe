@@ -10,6 +10,7 @@ function BoardIntersection(props: {
   ghostPieceType: PieceType;
   row: number;
   col: number;
+  isLastPiece: boolean;
 }) {
   const intersectionTypes: string[] = [];
   if (props.row === 0) {
@@ -53,13 +54,14 @@ function BoardIntersection(props: {
       className='intersection'
       data-piece-type={dataPieceType}
       data-ghost-piece-type={ghostPieceType}
+      data-is-last-piece={props.isLastPiece}
       data-intersection-type={intersectionTypes.join(' ')}
     />
   );
 }
 
 function GameBoard(props: {
-  pieces: PieceType[][];
+  movesList: PlayerMove[];
   myPieceType: PieceType;
   ws: WebSocket;
 }) {
@@ -77,19 +79,45 @@ function GameBoard(props: {
     );
   };
 
+  const pieces: PieceType[][] = [];
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    pieces[i] = [];
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      pieces[i][j] = PieceType.EMPTY;
+    }
+  }
+
+  let lastCoordinate;
+  const movesList = props.movesList;
+  for (let i = 0; i < movesList.length; i++) {
+    const playerMove = movesList[i];
+    const coordinate = playerMove.coordinate;
+    if (playerMove.moveType === MoveType.PIECE && coordinate !== undefined) {
+      pieces[coordinate[0]][coordinate[1]] = playerMove.pieceType;
+      lastCoordinate = [coordinate[0], coordinate[1]];
+    }
+  }
+
   const intersections = [];
-  for (let i = 0; i < BOARD_SIZE; i++)
-    for (let j = 0; j < BOARD_SIZE; j++)
+  for (let i = 0; i < BOARD_SIZE; i++) {
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      const isLastPiece =
+        lastCoordinate !== undefined &&
+        lastCoordinate[0] === i &&
+        lastCoordinate[1] === j;
       intersections.push(
         <div key={`${i}_${j}`} onClick={() => onPlacePiece(i, j)}>
           {BoardIntersection({
             row: i,
             col: j,
-            pieceType: props.pieces[i][j],
-            ghostPieceType: props.myPieceType
+            pieceType: pieces[i][j],
+            ghostPieceType: props.myPieceType,
+            isLastPiece
           })}
         </div>
       );
+    }
+  }
 
   let labels: JSX.Element[] = [];
   for (let i = 0; i < BOARD_SIZE; i++) {

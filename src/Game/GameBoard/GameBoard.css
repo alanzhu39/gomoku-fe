@@ -54,6 +54,10 @@
   box-sizing: border-box;
 }
 
+.intersection[data-is-last-piece='true'] {
+  box-shadow: 0 0 4px 4px #c8362e;
+}
+
 .intersection[data-piece-type='black'] {
   border: 1px solid var(--piece-border-color);
   background-color: var(--piece-black-color);
