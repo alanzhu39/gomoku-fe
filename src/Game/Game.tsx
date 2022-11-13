@@ -5,15 +5,23 @@ import './Game.css';
 import {
   LobbyGameMoveMessage,
   LobbyStatusMessage,
-  ServerMessage
+  ServerMessage,
+  SessionTokenMessage
 } from '../utils/Message';
 
 export const BOARD_SIZE = 15;
 
 function Game() {
-  // Initialize state
+  // Initial state
   // TODO: update ws URL
-  const [ws, setWs] = useState(new WebSocket('ws://localhost:8080/connect'));
+  const [ws, setWs] = useState(() => {
+    const sessionToken = window.localStorage.getItem('SESSION_TOKEN');
+    if (sessionToken !== null) {
+      return new WebSocket(`ws://localhost:8080/connect?${sessionToken}`);
+    } else {
+      return new WebSocket('ws://localhost:8080/connect?');
+    }
+  });
 
   const initPieces: PieceType[][] = [];
   for (let i = 0; i < BOARD_SIZE; i++) {
@@ -22,14 +30,33 @@ function Game() {
       initPieces[i][j] = PieceType.EMPTY;
     }
   }
-  const [pieces, setPieces] = useState(initPieces);
+  const [pieces, setPieces] = useState(() => {
+    const piecesState = window.localStorage.getItem('PIECES');
+    if (piecesState !== null) return JSON.parse(piecesState);
+    else return initPieces;
+  });
+  useEffect(() => {
+    window.localStorage.setItem('PIECES', JSON.stringify(pieces));
+  }, [pieces]);
 
   const initMovesList: PlayerMove[] = [];
-  const [movesList, setMovesList] = useState(initMovesList);
+  const [movesList, setMovesList] = useState(() => {
+    const movesListState = window.localStorage.getItem('MOVES_LIST');
+    if (movesListState !== null) return JSON.parse(movesListState);
+    else return initMovesList;
+  });
+  useEffect(() => {
+    window.localStorage.setItem('MOVES_LIST', JSON.stringify(movesList));
+  }, [movesList]);
 
-  const [lobbyState, setLobbyState] = useState(
-    new LobbyState(LobbyStatus.LOBBY_EMPTY)
-  );
+  const [lobbyState, setLobbyState] = useState(() => {
+    const lobbyStorageState = window.localStorage.getItem('LOBBY_STATE');
+    if (lobbyStorageState !== null) return JSON.parse(lobbyStorageState);
+    else return new LobbyState(LobbyStatus.LOBBY_EMPTY);
+  });
+  useEffect(() => {
+    window.localStorage.setItem('LOBBY_STATE', JSON.stringify(lobbyState));
+  }, [lobbyState]);
 
   useEffect(() => {
     // Initialize ws
@@ -37,7 +64,12 @@ function Game() {
       // TODO: logging
       console.log(event);
       const serverMessage = new ServerMessage().parse(event.data);
-      if (serverMessage instanceof LobbyStatusMessage) {
+      if (serverMessage instanceof SessionTokenMessage) {
+        window.localStorage.setItem(
+          'SESSION_TOKEN',
+          serverMessage.sessionToken
+        );
+      } else if (serverMessage instanceof LobbyStatusMessage) {
         if (
           lobbyState.lobbyStatus === LobbyStatus.GAME_FINISHED &&
           serverMessage.lobbyStatus === LobbyStatus.GAME_STARTED

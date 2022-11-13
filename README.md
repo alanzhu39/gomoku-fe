@@ -1,3 +1,7 @@
+# References
+
+Board based on: [react-go](https://github.com/cjlarose/react-go)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

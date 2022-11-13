@@ -67,6 +67,10 @@ export class ServerMessage {
     const splitMessage = serverMessage.split('::');
     const serverMessageType = splitMessage[0];
     switch (serverMessageType) {
+      case 'SESSION_TOKEN': {
+        const sessionToken = splitMessage[1];
+        return new SessionTokenMessage(sessionToken);
+      }
       case 'LOBBY_STATUS': {
         const lobbyData = splitMessage[1].split(':');
         const lobbyId = lobbyData[0];
@@ -115,6 +119,15 @@ export class ServerMessage {
     const i = parseInt(row) - 1;
     const j = col.charCodeAt(0) - charCodeA;
     return new PlayerMove(pieceType, MoveType.PIECE, [i, j]);
+  }
+}
+
+export class SessionTokenMessage extends ServerMessage {
+  sessionToken: string;
+
+  constructor(sessionToken: string) {
+    super();
+    this.sessionToken = sessionToken;
   }
 }
 

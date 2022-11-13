@@ -5,7 +5,7 @@
   background-color: #eeeeee;
   border-radius: 15px;
   padding: 15px;
-  min-width: 400px;
+  width: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -87,7 +87,7 @@
   grid-template-columns: 1fr 1fr;
   border: 1px solid #222831;
   border-top: none;
-  min-width: 400px;
+  min-width: 398px;
   overflow: visible;
 }
 

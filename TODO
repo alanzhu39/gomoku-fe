@@ -2,6 +2,7 @@ TODO:
 - Use env variables
 - Responsive sizing
 - Cleanup: comments, todo, fixme, test
+- release builds?
 
 Bugfixes:
 - Use empty piece hover if game is not yet started
@@ -9,9 +10,22 @@ Bugfixes:
 - More/better game state? (eg. which player the user is, to more easily track myPiece and currTurn)
 - Update UI (waiting lobby panels, etc.)
 - Bad inputs to BE (crashes threads, moreso a BE requirement)
-- connection based on session token, so user/connection can refresh
+- allow users to 
 - features
   - highlight win?
+
+11/12/22:
+In progress:
+- improving UI: highlighting certain elements
+  - current turn
+  - last move (both in list and on board)
+- hosting options
+
+Finished:
+- accepting and storing session tokens
+- persisting state (local storage?)
+
+
 
 11/10/22:
 In progress:
