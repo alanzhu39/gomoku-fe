@@ -8,9 +8,10 @@ import {
   ServerMessage,
   SessionTokenMessage
 } from '../utils/Message';
-import { plainToClass, plainToInstance } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 
 export const BOARD_SIZE = 15;
+const apiUrl = process.env.REACT_APP_API_URL!;
 
 function Game() {
   // Initial state
@@ -18,9 +19,9 @@ function Game() {
   const [ws, setWs] = useState(() => {
     const sessionToken = window.localStorage.getItem('SESSION_TOKEN');
     if (sessionToken !== null) {
-      return new WebSocket(`ws://localhost:8080/connect?${sessionToken}`);
+      return new WebSocket(`ws://${apiUrl}/connect?${sessionToken}`);
     } else {
-      return new WebSocket('ws://localhost:8080/connect?');
+      return new WebSocket(`ws://${apiUrl}/connect`);
     }
   });
 
