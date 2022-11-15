@@ -19,9 +19,9 @@ function Game() {
   const [ws, setWs] = useState(() => {
     const sessionToken = window.localStorage.getItem('SESSION_TOKEN');
     if (sessionToken !== null) {
-      return new WebSocket(`wss://${apiUrl}/connect?${sessionToken}`);
+      return new WebSocket(`ws://${apiUrl}/connect?${sessionToken}`);
     } else {
-      return new WebSocket(`wss://${apiUrl}/connect`);
+      return new WebSocket(`ws://${apiUrl}/connect`);
     }
   });
 
