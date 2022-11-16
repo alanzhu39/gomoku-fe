@@ -14,6 +14,16 @@ Bugfixes:
 - features
   - highlight win?
 
+11/15/22:
+In progress:
+- Add home button to clear storage
+  - Leave lobby message, declares other player as winner
+
+Finished:
+- Updating icon
+
+
+
 11/14/22:
 In progress:
 - Azure static web app deployment
