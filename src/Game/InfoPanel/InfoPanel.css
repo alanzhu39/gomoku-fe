@@ -20,6 +20,7 @@
   flex-direction: column;
   gap: 30px;
   word-wrap: break-word;
+  flex-grow: 1;
 }
 
 .TwoPlayerWaitingPanel {
@@ -27,6 +28,7 @@
   flex-direction: column;
   gap: 30px;
   word-wrap: break-word;
+  flex-grow: 1;
 }
 
 .InGamePanel {
@@ -49,7 +51,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1px solid #222831;
-  border-bottom: none;
 }
 
 .PlayerCard {
@@ -87,6 +88,7 @@
   grid-template-columns: 1fr 1fr;
   border: 1px solid #222831;
   border-top: none;
+  border-bottom: none;
   min-width: 398px;
   overflow: visible;
 }
@@ -94,7 +96,9 @@
 .PlayerMoveCard {
   padding: 5%;
   gap: 5%;
-  border: 1px solid #222831;
+  border-left: 1px solid #222831;
+  border-right: 1px solid #222831;
+  border-bottom: 2px solid #222831;
   display: flex;
   align-items: center;
   font-size: large;
@@ -129,13 +133,13 @@ hr.rounded {
 }
 
 .spacer {
-  flex-grow: 1;
+  flex-grow: 10;
 }
 
 .InfoPanelButton {
   border: none;
   border-radius: 10px;
-  height: 60px;
+  min-height: 60px;
   font-size: x-large;
   font-weight: 500;
   color: #eeeeee;
@@ -155,7 +159,8 @@ hr.rounded {
 }
 
 .ResignGameButton {
-  background-color: #e26868;
+  flex: 1;
+  background-color: #ebd671;
 }
 
 .ButtonsContainer {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LeaveLobbyMessage, RematchMessage } from '../../../utils/Message';
+import { RematchMessage } from '../../../utils/Message';
 import { PieceType } from '../../Game';
+import LeaveLobbyButton from '../components/LeaveLobbyButton';
 
 function WinnerPanel(props: { pieceType: PieceType; ws: WebSocket }) {
   /**
@@ -10,11 +11,6 @@ function WinnerPanel(props: { pieceType: PieceType; ws: WebSocket }) {
   function onRematch() {
     // Send WS message
     props.ws.send(new RematchMessage().toString());
-  }
-
-  function onLeaveLobby() {
-    // Send WS message
-    props.ws.send(new LeaveLobbyMessage().toString());
   }
 
   let winner = '';
@@ -34,12 +30,7 @@ function WinnerPanel(props: { pieceType: PieceType; ws: WebSocket }) {
         <button className='InfoPanelButton RematchButton' onClick={onRematch}>
           Rematch
         </button>
-        <button
-          className='InfoPanelButton LeaveLobbyButton'
-          onClick={onLeaveLobby}
-        >
-          Leave lobby
-        </button>
+        <LeaveLobbyButton ws={props.ws} />
       </div>
     </div>
   );

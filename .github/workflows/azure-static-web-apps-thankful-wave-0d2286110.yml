@@ -31,7 +31,7 @@ jobs:
           api_location: '' # Api source code path - optional
           output_location: 'build' # Built app content directory - optional
         env:
-          REACT_APP_API_URL: 'rust-gomoku.eastus.azurecontainer.io'
+          REACT_APP_WS_URL: 'wss://rust-gomoku.eastus.azurecontainer.io'
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

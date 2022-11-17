@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LobbyState } from '../../Game';
+import LeaveLobbyButton from '../components/LeaveLobbyButton';
 import '../InfoPanel.css';
 
 function OnePlayerWaitingPanel(props: {
@@ -15,6 +16,8 @@ function OnePlayerWaitingPanel(props: {
       <span>Lobby Created!</span>
       <span>Waiting for opponent to join...</span>
       <span>Lobby ID: {props.lobbyState.lobbyId}</span>
+      <div className='spacer' />
+      <LeaveLobbyButton ws={props.ws} />
     </div>
   );
 }

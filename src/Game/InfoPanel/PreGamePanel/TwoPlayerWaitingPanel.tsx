@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StartGameMessage } from '../../../utils/Message';
 import { LobbyState } from '../../Game';
+import LeaveLobbyButton from '../components/LeaveLobbyButton';
 import '../InfoPanel.css';
 
 function TwoPlayerWaitingPanel(props: {
@@ -29,6 +30,8 @@ function TwoPlayerWaitingPanel(props: {
       )}
       {!props.lobbyState.isCreator &&
         'Waiting for lobby creator to start game...'}
+      <div className='spacer' />
+      <LeaveLobbyButton ws={props.ws} />
     </div>
   );
 }

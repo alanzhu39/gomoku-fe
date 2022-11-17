@@ -11,7 +11,7 @@ import {
 import { plainToInstance } from 'class-transformer';
 
 export const BOARD_SIZE = 15;
-const apiUrl = process.env.REACT_APP_API_URL!;
+const wsUrl = process.env.REACT_APP_WS_URL!;
 
 function Game() {
   // Initial state
@@ -19,9 +19,9 @@ function Game() {
   const [ws, setWs] = useState(() => {
     const sessionToken = window.localStorage.getItem('SESSION_TOKEN');
     if (sessionToken !== null) {
-      return new WebSocket(`wss://${apiUrl}/connect?${sessionToken}`);
+      return new WebSocket(`${wsUrl}/connect?${sessionToken}`);
     } else {
-      return new WebSocket(`wss://${apiUrl}/connect`);
+      return new WebSocket(`${wsUrl}/connect`);
     }
   });
 

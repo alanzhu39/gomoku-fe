@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlayerMoveMessage } from '../../../utils/Message';
-import { LobbyState, MoveType, PieceType, PlayerMove } from '../../Game';
+import { MoveType, PieceType, PlayerMove } from '../../Game';
+import LeaveLobbyButton from '../components/LeaveLobbyButton';
 import '../InfoPanel.css';
 
 function GameActionsPanel(props: { myPieceType: PieceType; ws: WebSocket }) {
@@ -19,9 +20,12 @@ function GameActionsPanel(props: { myPieceType: PieceType; ws: WebSocket }) {
 
   return (
     <div className='GameActionsPanel'>
-      <button className='InfoPanelButton ResignGameButton' onClick={onResign}>
-        Resign
-      </button>
+      <div className='ButtonsContainer'>
+        <button className='InfoPanelButton ResignGameButton' onClick={onResign}>
+          Resign
+        </button>
+        <LeaveLobbyButton ws={props.ws} />
+      </div>
     </div>
   );
 }
