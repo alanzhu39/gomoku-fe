@@ -23,15 +23,20 @@ function TwoPlayerWaitingPanel(props: {
     <div className='TwoPlayerWaitingPanel'>
       <span>Lobby Ready!</span>
       <span>Lobby ID: {props.lobbyState.lobbyId}</span>
-      {props.lobbyState.isCreator && (
-        <button className='InfoPanelButton StartGameButton' onClick={startGame}>
-          Start Game
-        </button>
-      )}
       {!props.lobbyState.isCreator &&
         'Waiting for lobby creator to start game...'}
       <div className='spacer' />
-      <LeaveLobbyButton ws={props.ws} />
+      <div className='ButtonsContainer'>
+        {props.lobbyState.isCreator && (
+          <button
+            className='InfoPanelButton StartGameButton'
+            onClick={startGame}
+          >
+            Start Game
+          </button>
+        )}
+        <LeaveLobbyButton ws={props.ws} />
+      </div>
     </div>
   );
 }

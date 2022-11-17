@@ -143,6 +143,7 @@ hr.rounded {
   font-size: x-large;
   font-weight: 500;
   color: #eeeeee;
+  flex: 1;
 }
 
 .InfoPanelButton:hover {
@@ -159,7 +160,6 @@ hr.rounded {
 }
 
 .ResignGameButton {
-  flex: 1;
   background-color: #ebd671;
 }
 
@@ -172,12 +172,10 @@ hr.rounded {
 }
 
 .RematchButton {
-  flex: 1;
   background-color: #6fb2d2;
 }
 
 .LeaveLobbyButton {
-  flex: 1;
   background-color: #e26868;
 }
 
