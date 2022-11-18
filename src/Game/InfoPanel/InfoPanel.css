@@ -96,8 +96,9 @@
   border: 1px solid #222831;
   border-top: none;
   border-bottom: none;
-  min-width: 398px;
+  max-width: 398px;
   overflow: visible;
+  margin-bottom: 1px;
 }
 
 .PlayerMoveCard {

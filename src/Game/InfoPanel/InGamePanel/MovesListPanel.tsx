@@ -6,7 +6,16 @@ function MovesListPanel(props: { movesList: PlayerMove[] }) {
    * Panel displaying in-game moves list
    */
 
+  const movesListEndRef = useRef<null | HTMLDivElement>(null);
   const movesList = props.movesList;
+
+  const scrollToBottom = () => {
+    movesListEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [props.movesList]);
 
   const pieceMoves = movesList.filter(
     (playerMove) => playerMove.moveType === MoveType.PIECE
@@ -38,6 +47,7 @@ function MovesListPanel(props: { movesList: PlayerMove[] }) {
             {resigningPlayer} resigns!
           </div>
         )}
+        <div ref={movesListEndRef} />
       </div>
     </div>
   );
