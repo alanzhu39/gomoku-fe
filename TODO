@@ -16,10 +16,10 @@ Bugfixes:
 
 11/17/22:
 In progress:
-- moves list autoscroll
-- update readme
 
 Finished:
+- update readme
+- moves list autoscroll
 - support draw result
 - dependabot updates
 - Add home button to clear storage
