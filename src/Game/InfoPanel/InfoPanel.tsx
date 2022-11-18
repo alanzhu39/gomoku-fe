@@ -4,6 +4,7 @@ import InGamePanel from './InGamePanel/InGamePanel';
 import PostGamePanel from './PostGamePanel/PostGamePanel';
 import PreGamePanel from './PreGamePanel/PreGamePanel';
 import './InfoPanel.css';
+import LobbyAbandonedPanel from './LobbyAbandonedPanel/LobbyAbandonedPanel';
 
 // TODO: onChange typing
 function InfoPanel(props: {
@@ -50,6 +51,12 @@ function InfoPanel(props: {
           setLobbyState={props.setLobbyState}
         />
       );
+      break;
+    case LobbyStatus.ABANDONED:
+      infoPanelContents = (
+        <LobbyAbandonedPanel lobbyState={props.lobbyState} ws={props.ws} />
+      );
+      break;
   }
 
   return <div className='InfoPanel'>{infoPanelContents}</div>;

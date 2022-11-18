@@ -31,9 +31,16 @@
   flex-grow: 1;
 }
 
+.LobbyAbandonedPanel {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
 .InGamePanel {
-  margin-top: 10px;
-  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

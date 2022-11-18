@@ -175,6 +175,7 @@ export enum LobbyStatus {
   TWO_PLAYERS_WAITING,
   GAME_STARTED,
   GAME_FINISHED,
+  ABANDONED,
   CLOSED
 }
 

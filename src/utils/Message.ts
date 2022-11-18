@@ -96,6 +96,8 @@ export class ServerMessage {
         return LobbyStatus.GAME_STARTED;
       case 'GameFinished':
         return LobbyStatus.GAME_FINISHED;
+      case 'Abandoned':
+        return LobbyStatus.ABANDONED;
       case 'Closed':
         return LobbyStatus.CLOSED;
       default:
