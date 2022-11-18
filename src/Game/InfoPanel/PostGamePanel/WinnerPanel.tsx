@@ -13,19 +13,22 @@ function WinnerPanel(props: { pieceType: PieceType; ws: WebSocket }) {
     props.ws.send(new RematchMessage().toString());
   }
 
-  let winner = '';
+  let winnerText = '';
   switch (props.pieceType) {
     case PieceType.WHITE:
-      winner = 'White';
+      winnerText = 'White wins!';
       break;
     case PieceType.BLACK:
-      winner = 'Black';
+      winnerText = 'Black wins!';
+      break;
+    case PieceType.EMPTY:
+      winnerText = 'Draw!';
       break;
   }
 
   return (
     <div className='WinnerPanel'>
-      {winner} wins!
+      {winnerText}
       <div className='ButtonsContainer'>
         <button className='InfoPanelButton RematchButton' onClick={onRematch}>
           Rematch

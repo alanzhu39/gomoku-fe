@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  BOARD_SIZE,
   getOppositePieceType,
   LobbyState,
   MoveType,
@@ -21,14 +22,18 @@ function PostGamePanel(props: {
    * Includes: game result, buttons (exit lobby, rematch, etc.)
    */
 
+  const MAX_MOVES = BOARD_SIZE * BOARD_SIZE;
+
   let winnerPieceType = PieceType.EMPTY;
   const movesList = props.movesList;
   if (movesList.length > 0) {
     const lastMove = movesList[movesList.length - 1];
     if (lastMove.moveType === MoveType.RESIGN) {
       winnerPieceType = getOppositePieceType(lastMove.pieceType);
-    } else {
+    } else if (movesList.length < MAX_MOVES) {
       winnerPieceType = lastMove.pieceType;
+    } else {
+      // Draw
     }
   }
 

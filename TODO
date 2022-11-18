@@ -16,12 +16,14 @@ Bugfixes:
 
 11/17/22:
 In progress:
+- moves list autoscroll
+- update readme
+
+Finished:
+- support draw result
 - dependabot updates
 - Add home button to clear storage
   - Leave lobby message, declares other player as winner
-- update readme
-- support draw result
-- moves list autoscroll
 
 
 
