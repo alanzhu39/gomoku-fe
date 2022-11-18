@@ -1,0 +1,216 @@
+@import '../../App.css';
+
+.InfoPanel {
+  color: #222831;
+  background-color: #eeeeee;
+  border-radius: 15px;
+  padding: 15px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.LobbyEmptyPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.OnePlayerWaitingPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
+.TwoPlayerWaitingPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
+.LobbyAbandonedPanel {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  word-wrap: break-word;
+  flex-grow: 1;
+}
+
+.InGamePanel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.PostGamePanel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.PlayersPanel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #222831;
+}
+
+.PlayerCard {
+  padding: 5%;
+  gap: 5%;
+  border: 1px solid #222831;
+  display: flex;
+  align-items: center;
+  font-size: large;
+}
+
+.PlayerPiece {
+  min-width: 24px;
+  height: 24px;
+  border: 1px solid var(--piece-border-color);
+  border-radius: 13px;
+}
+
+.PlayerPiece[data-piece-type='black'] {
+  background-color: var(--piece-black-color);
+}
+
+.PlayerPiece[data-piece-type='white'] {
+  background-color: var(--piece-white-color);
+}
+
+.MovesListPanel {
+  overflow-y: scroll;
+  max-height: 480px;
+  width: calc(100% + 15px);
+}
+
+.MovesListGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #222831;
+  border-top: none;
+  border-bottom: none;
+  max-width: 398px;
+  overflow: visible;
+  margin-bottom: 1px;
+}
+
+.PlayerMoveCard {
+  padding: 5%;
+  gap: 5%;
+  border-left: 1px solid #222831;
+  border-right: 1px solid #222831;
+  border-bottom: 2px solid #222831;
+  display: flex;
+  align-items: center;
+  font-size: large;
+}
+
+.PlayerResignCard {
+  grid-column: 1 / span 2;
+  padding: 3%;
+  justify-content: center;
+}
+
+.GameActionsPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.WinnerPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+hr.rounded {
+  margin-top: 7%;
+  margin-bottom: 7%;
+  width: 95%;
+  border-top: 2px solid #bbb;
+  border-radius: 1px;
+}
+
+.spacer {
+  flex-grow: 10;
+}
+
+.InfoPanelButton {
+  border: none;
+  border-radius: 10px;
+  min-height: 60px;
+  font-size: x-large;
+  font-weight: 500;
+  color: #eeeeee;
+  flex: 1;
+}
+
+.InfoPanelButton:hover {
+  cursor: pointer;
+}
+
+.CreateLobbyButton {
+  margin-top: 7%;
+  background-color: #85c88a;
+}
+
+.StartGameButton {
+  background-color: #85c88a;
+}
+
+.ResignGameButton {
+  background-color: #ebd671;
+}
+
+.ButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.RematchButton {
+  background-color: #6fb2d2;
+}
+
+.LeaveLobbyButton {
+  background-color: #e26868;
+}
+
+.JoinLobbyForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.LobbyIdLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  font-size: large;
+  font-weight: 400;
+}
+
+.LobbyIdInput {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  font-size: large;
+  font-weight: 400;
+}
+
+.JoinLobbyButton {
+  margin-top: 7%;
+  background-color: #6fb2d2;
+}

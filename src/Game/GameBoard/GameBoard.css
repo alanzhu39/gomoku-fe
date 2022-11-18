@@ -1,0 +1,135 @@
+@import '../../App.css';
+
+.GameBoard {
+  background-color: var(--board-background-color);
+  background-image: url('/src/assets/wood-pattern.png');
+  display: grid;
+  grid-template-columns:
+    var(--label-size) repeat(var(--board-size), var(--grid-size))
+    var(--label-size);
+  grid-template-rows:
+    var(--label-size) repeat(var(--board-size), var(--grid-size))
+    var(--label-size);
+  padding: 26px;
+}
+
+.BoardLabel {
+  color: var(--board-grid-color);
+  font-size: 24px;
+  align-self: center;
+}
+
+.BoardLabel[data-position='top'] {
+  grid-row: 1;
+  grid-column: calc(var(--index) + 2);
+}
+
+.BoardLabel[data-position='left'] {
+  grid-column: 1;
+  grid-row: calc(var(--index) + 2);
+  justify-self: right;
+}
+
+.BoardLabel[data-position='right'] {
+  grid-column: calc(var(--board-size) + 2);
+  grid-row: calc(var(--index) + 2);
+}
+
+.BoardLabel[data-position='bottom'] {
+  grid-row: calc(var(--board-size) + 2);
+  grid-column: calc(var(--index) + 2);
+}
+
+.Board-grid {
+  grid-column: 2 / span var(--board-size);
+  grid-row: 2 / span var(--board-size);
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), var(--grid-size));
+}
+
+.intersection {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.intersection[data-is-last-piece='true'] {
+  box-shadow: 0 0 4px 4px #c8362e;
+}
+
+.intersection[data-piece-type='black'] {
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-black-color);
+}
+
+.intersection[data-piece-type='white'] {
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-white-color);
+}
+
+.intersection:hover {
+  cursor: pointer;
+}
+
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover {
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-black-color);
+  cursor: pointer;
+}
+
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover {
+  border: 1px solid var(--piece-border-color);
+  background-color: var(--piece-white-color);
+  cursor: pointer;
+}
+
+.intersection:before {
+  pointer-events: none;
+  border-top: 2px var(--board-grid-color) solid;
+  width: 40px;
+  display: block;
+  content: '';
+  top: 19px;
+  position: relative;
+}
+
+.intersection[data-intersection-type~='right-edge']:before {
+  width: 21px;
+}
+
+.intersection[data-intersection-type~='left-edge']:before {
+  left: 19px;
+  width: 21px;
+}
+
+.intersection:after {
+  pointer-events: none;
+  border-left: 2px var(--board-grid-color) solid;
+  height: 40px;
+  display: block;
+  content: '';
+  top: -2px;
+  left: 19px;
+  position: relative;
+}
+
+.intersection[data-intersection-type~='top-edge']:after {
+  top: 19px;
+  height: 19px;
+}
+
+.intersection[data-intersection-type~='bottom-edge']:after {
+  height: 19px;
+}
+
+.intersection[data-piece-type='white']:before,
+.intersection[data-piece-type='black']:before,
+.intersection[data-piece-type='white']:after,
+.intersection[data-piece-type='black']:after,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::before,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='white']:hover::after,
+.intersection[data-piece-type='empty'][data-ghost-piece-type='black']:hover::after {
+  content: none;
+}
