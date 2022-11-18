@@ -105,7 +105,7 @@ See the [open issues](https://github.com/alanzhu39/gomoku-fe/issues) for a full 
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
