@@ -129,6 +129,7 @@ Some useful resources during development!
 - [Img Shields](https://shields.io)
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Color Hunt Color Palettes](https://colorhunt.co/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
