@@ -95,17 +95,19 @@ function Game() {
 
   return (
     <div className='Game'>
-      <GameBoard
-        movesList={movesList}
-        myPieceType={lobbyState.myPieceType}
-        ws={ws}
-      />
-      <InfoPanel
-        movesList={movesList}
-        lobbyState={lobbyState}
-        ws={ws}
-        setLobbyState={setLobbyState}
-      />
+      <div className='GameContainer'>
+        <GameBoard
+          movesList={movesList}
+          myPieceType={lobbyState.myPieceType}
+          ws={ws}
+        />
+        <InfoPanel
+          movesList={movesList}
+          lobbyState={lobbyState}
+          ws={ws}
+          setLobbyState={setLobbyState}
+        />
+      </div>
     </div>
   );
 }

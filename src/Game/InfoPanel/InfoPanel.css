@@ -1,8 +1,8 @@
 @import '../../App.css';
 
 .InfoPanel {
-  color: #222831;
-  background-color: #eeeeee;
+  color: var(--palette-black);
+  background-color: var(--palette-white);
   border-radius: 15px;
   padding: 15px;
   width: 400px;
@@ -57,13 +57,13 @@
 .PlayersPanel {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #222831;
+  border: 1px solid var(--palette-black);
 }
 
 .PlayerCard {
   padding: 5%;
   gap: 5%;
-  border: 1px solid #222831;
+  border: 1px solid var(--palette-black);
   display: flex;
   align-items: center;
   font-size: large;
@@ -93,7 +93,7 @@
 .MovesListGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #222831;
+  border: 1px solid var(--palette-black);
   border-top: none;
   border-bottom: none;
   max-width: 398px;
@@ -104,9 +104,9 @@
 .PlayerMoveCard {
   padding: 5%;
   gap: 5%;
-  border-left: 1px solid #222831;
-  border-right: 1px solid #222831;
-  border-bottom: 2px solid #222831;
+  border-left: 1px solid var(--palette-black);
+  border-right: 1px solid var(--palette-black);
+  border-bottom: 2px solid var(--palette-black);
   display: flex;
   align-items: center;
   font-size: large;
@@ -150,7 +150,7 @@ hr.rounded {
   min-height: 60px;
   font-size: x-large;
   font-weight: 500;
-  color: #eeeeee;
+  color: var(--palette-white);
   flex: 1;
 }
 
