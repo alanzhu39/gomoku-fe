@@ -96,6 +96,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] ELO system
   - [ ] Chat
   - [ ] Single player/analysis mode
+  - [ ] Spectate games
 
 See the [open issues](https://github.com/alanzhu39/gomoku-fe/issues) for a full list of proposed features (and known issues).
 

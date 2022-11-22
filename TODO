@@ -1,25 +1,33 @@
 TODO:
+Features:
+- game scrubbing
+- evaluation bar
+- user accounts
+- highlight win?
+
+Bugfixes:
 - Use env variables
 - Responsive sizing
 - Cleanup: comments, todo, fixme, test
 - release builds?
-
-Bugfixes:
 - Use empty piece hover if game is not yet started
 - Current player turn indicator
 - More/better game state? (eg. which player the user is, to more easily track myPiece and currTurn)
 - Update UI (waiting lobby panels, etc.)
 - Bad inputs to BE (crashes threads, moreso a BE requirement)
 - allow users to 
-- features
-  - highlight win?
+- update messaging format?
 
-TODO:
+11/22/22:
+In progress:
+- link sharing
+- current turn indicator
 - menu bar
-  - open lobbies
   - game rules
   - github link
   - home button/logo
+
+
 
 11/17/22:
 In progress:
