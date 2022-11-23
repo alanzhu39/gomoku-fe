@@ -96,8 +96,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] ELO system
   - [ ] Chat
   - [ ] Single player/analysis mode
-
-See the [open issues](https://github.com/alanzhu39/gomoku-fe/issues) for a full list of proposed features (and known issues).
+  - [ ] Spectate games
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -129,6 +128,7 @@ Some useful resources during development!
 - [Img Shields](https://shields.io)
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Color Hunt Color Palettes](https://colorhunt.co/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

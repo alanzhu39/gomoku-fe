@@ -1,0 +1,53 @@
+.MenuBar {
+  height: 42px;
+  background-color: var(--palette-gray);
+  color: var(--palette-white);
+  display: flex;
+  align-items: stretch;
+}
+
+.MenuBarItem {
+  padding-inline: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MenuBarItem:hover {
+  background-color: var(--palette-black);
+  cursor: pointer;
+}
+
+.noHover {
+  pointer-events: none;
+}
+
+.GitHubLogo {
+  width: 30px;
+  height: 30px;
+}
+
+.MenuSlidingPane {
+  width: 800px;
+  min-height: 100vh;
+  margin-bottom: -24px;
+  margin-left: -32px;
+  margin-top: -24px;
+  background-color: var(--palette-black);
+  color: var(--palette-white);
+}
+
+.AboutPane {
+  padding: 20px 40px;
+  line-height: 2;
+}
+
+.InstructionsPane {
+  padding: 20px 40px;
+  line-height: 2;
+}
+
+.slide-pane__content {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

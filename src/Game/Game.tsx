@@ -89,23 +89,29 @@ function Game() {
       } else if (serverMessage instanceof LobbyGameMoveMessage) {
         const playerMove = serverMessage.playerMove;
         setMovesList([...movesList, playerMove]);
+        setLobbyState({
+          ...lobbyState,
+          currentTurn: getOppositePieceType(playerMove.pieceType)
+        });
       }
     };
   });
 
   return (
     <div className='Game'>
-      <GameBoard
-        movesList={movesList}
-        myPieceType={lobbyState.myPieceType}
-        ws={ws}
-      />
-      <InfoPanel
-        movesList={movesList}
-        lobbyState={lobbyState}
-        ws={ws}
-        setLobbyState={setLobbyState}
-      />
+      <div className='GameContainer'>
+        <GameBoard
+          movesList={movesList}
+          myPieceType={lobbyState.myPieceType}
+          ws={ws}
+        />
+        <InfoPanel
+          movesList={movesList}
+          lobbyState={lobbyState}
+          ws={ws}
+          setLobbyState={setLobbyState}
+        />
+      </div>
     </div>
   );
 }
@@ -183,6 +189,7 @@ export class LobbyState {
   lobbyStatus: LobbyStatus;
   isCreator: boolean = true;
   myPieceType: PieceType = PieceType.BLACK;
+  currentTurn: PieceType = PieceType.BLACK;
   lobbyId?: string;
 
   constructor(lobbyStatus: LobbyStatus) {

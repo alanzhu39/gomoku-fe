@@ -1,19 +1,21 @@
 :root {
-  --board-background-color: #ffd369;
-  --board-grid-color: #222831;
+  --palette-black: #222831;
+  --palette-gray: #393e46;
+  --palette-tan: #ffd369;
+  --palette-white: #eeeeee;
+  --board-background-color: var(--palette-tan);
+  --board-grid-color: var(--palette-black);
   --piece-white-color: #eee;
   --piece-black-color: #222;
   --piece-border-color: #000;
 }
 
 .App {
-  text-align: center;
-  background-color: #222831;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+}
+
+.spacer {
+  flex-grow: 10;
 }
