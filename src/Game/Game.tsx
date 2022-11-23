@@ -3,6 +3,7 @@ import GameBoard from './GameBoard/GameBoard';
 import InfoPanel from './InfoPanel/InfoPanel';
 import './Game.css';
 import {
+  JoinLobbyMessage,
   LobbyGameMoveMessage,
   LobbyStatusMessage,
   ServerMessage,
@@ -15,7 +16,6 @@ const wsUrl = process.env.REACT_APP_WS_URL!;
 
 function Game() {
   // Initial state
-  // TODO: update ws URL
   const [ws, setWs] = useState(() => {
     const sessionToken = window.localStorage.getItem('SESSION_TOKEN');
     if (sessionToken !== null) {
@@ -52,7 +52,30 @@ function Game() {
     window.localStorage.setItem('LOBBY_STATE', JSON.stringify(lobbyState));
   }, [lobbyState]);
 
+  function checkAutoJoin() {
+    if (lobbyState.lobbyStatus === LobbyStatus.LOBBY_EMPTY) {
+      const params = new URLSearchParams(window.location.search);
+      const lobbyId = params.get('lobbyId');
+
+      if (lobbyId !== null) {
+        // Send WS join lobby message
+        ws.send(new JoinLobbyMessage(lobbyId).toString());
+
+        // Update creator status
+        setLobbyState({
+          ...lobbyState,
+          isCreator: false,
+          myPieceType: PieceType.WHITE
+        });
+      }
+    }
+  }
+
   useEffect(() => {
+    ws.onopen = () => {
+      checkAutoJoin();
+    };
+
     // Initialize ws
     ws.onmessage = (event) => {
       // TODO: logging

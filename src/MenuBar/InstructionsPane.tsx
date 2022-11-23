@@ -16,7 +16,7 @@ function InstructionsPane(props: { isOpen: boolean; onRequestClose: any }) {
         </p>
         <h3>Rules</h3>
         <span>The rules of the game are simple:</span>
-        <ol style={{ width: '', height: '' }}>
+        <ol>
           <li>
             The player with the black pieces makes the first move by placing one
             of their pieces at an intersection on the board. These include

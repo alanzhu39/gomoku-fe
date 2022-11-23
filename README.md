@@ -86,7 +86,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [ ] Invite via link
+- [x] Invite via link
 - [ ] Game features
   - [ ] Time control(s)
   - [ ] Game scrubbing
