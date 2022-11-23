@@ -20,18 +20,19 @@ Bugfixes:
 
 11/22/22:
 In progress:
+- link sharing
+
+Finished:
+- menu bar skeleton
 - about page
 - how to play page
 - github link
-- link sharing
 - current turn indicator
+  - scrapped
 - menu bar
   - game rules
   - github link
   - home button/logo
-
-Finished:
-- menu bar skeleton
 
 
 

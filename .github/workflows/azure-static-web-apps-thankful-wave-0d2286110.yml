@@ -32,6 +32,7 @@ jobs:
           output_location: 'build' # Built app content directory - optional
         env:
           REACT_APP_WS_URL: 'wss://rust-gomoku.eastus.azurecontainer.io'
+          REACT_APP_SITE_URL: 'https://www.playgomoku.net'
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
