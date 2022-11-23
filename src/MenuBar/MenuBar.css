@@ -26,3 +26,29 @@
   width: 30px;
   height: 30px;
 }
+
+.MenuSlidingPane {
+  width: 800px;
+  height: 100vh;
+  max-height: 100vh;
+  margin-bottom: -24px;
+  margin-left: -32px;
+  margin-top: -24px;
+  background-color: var(--palette-black);
+  color: var(--palette-white);
+}
+
+.AboutPane {
+  padding: 20px 40px;
+  line-height: 2;
+}
+
+.InstructionsPane {
+  padding: 20px 40px;
+  line-height: 2;
+}
+
+.slide-pane__content {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

@@ -140,10 +140,6 @@ hr.rounded {
   border-radius: 1px;
 }
 
-.spacer {
-  flex-grow: 10;
-}
-
 .InfoPanelButton {
   border: none;
   border-radius: 10px;

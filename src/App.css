@@ -15,3 +15,7 @@
   flex-direction: column;
   height: 100vh;
 }
+
+.spacer {
+  flex-grow: 10;
+}
