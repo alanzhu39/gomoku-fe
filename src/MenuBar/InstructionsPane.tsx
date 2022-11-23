@@ -1,5 +1,4 @@
 import React from 'react';
-import SlidingPane from 'react-sliding-pane';
 import './MenuBar.css';
 import MenuSlidingPane from './MenuSlidingPane';
 
@@ -11,14 +10,13 @@ function InstructionsPane(props: { isOpen: boolean; onRequestClose: any }) {
     >
       <div className='InstructionsPane'>
         <h2>How to play</h2>
-        <span>
+        <p>
           Gomoku is a 2-player game played on a 15x15 square grid, with black
           and white circular pieces.
-        </span>
-        <br />
-        <br />
+        </p>
+        <h3>Rules</h3>
         <span>The rules of the game are simple:</span>
-        <ol style={{ width: '', height: '', marginTop: 0 }}>
+        <ol style={{ width: '', height: '' }}>
           <li>
             The player with the black pieces makes the first move by placing one
             of their pieces at an intersection on the board. These include

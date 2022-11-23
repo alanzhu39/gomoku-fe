@@ -16,11 +16,11 @@ function MenuBar(props: { panes: any; setPanes: any }) {
     <div className='MenuBar'>
       <div className='MenuBarItem noHover'>PlayGomoku.net</div>
       <div className='spacer'></div>
-      <div className='MenuBarItem' onClick={openInstructionsPane}>
-        How to play
-      </div>
       <div className='MenuBarItem' onClick={openAboutPane}>
         About
+      </div>
+      <div className='MenuBarItem' onClick={openInstructionsPane}>
+        How to play
       </div>
       <div className='MenuBarItem'>
         <a href={githubUrl} target='_blank' rel='noopener noreferrer'>
