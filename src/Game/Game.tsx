@@ -89,6 +89,10 @@ function Game() {
       } else if (serverMessage instanceof LobbyGameMoveMessage) {
         const playerMove = serverMessage.playerMove;
         setMovesList([...movesList, playerMove]);
+        setLobbyState({
+          ...lobbyState,
+          currentTurn: getOppositePieceType(playerMove.pieceType)
+        });
       }
     };
   });
@@ -185,6 +189,7 @@ export class LobbyState {
   lobbyStatus: LobbyStatus;
   isCreator: boolean = true;
   myPieceType: PieceType = PieceType.BLACK;
+  currentTurn: PieceType = PieceType.BLACK;
   lobbyId?: string;
 
   constructor(lobbyStatus: LobbyStatus) {

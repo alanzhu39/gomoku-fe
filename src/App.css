@@ -1,9 +1,9 @@
 :root {
   --palette-black: #222831;
   --palette-gray: #393e46;
-  --palette-yellow: #ffd369;
+  --palette-tan: #ffd369;
   --palette-white: #eeeeee;
-  --board-background-color: var(--palette-yellow);
+  --board-background-color: var(--palette-tan);
   --board-grid-color: var(--palette-black);
   --piece-white-color: #eee;
   --piece-black-color: #222;
