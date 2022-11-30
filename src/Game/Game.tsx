@@ -13,6 +13,7 @@ import { plainToInstance } from 'class-transformer';
 
 export const BOARD_SIZE = 15;
 const wsUrl = process.env.REACT_APP_WS_URL!;
+const siteUrl = process.env.REACT_APP_SITE_URL!;
 
 function Game() {
   // Initial state
@@ -55,21 +56,28 @@ function Game() {
   function checkAutoJoin() {
     if (lobbyState.lobbyStatus === LobbyStatus.LOBBY_EMPTY) {
       const params = new URLSearchParams(window.location.search);
+      const pathName = window.location.pathname;
       const lobbyId = params.get('lobbyId');
 
-      if (lobbyId !== null) {
+      if (pathName === '/join' && lobbyId !== null) {
         // Send WS join lobby message
         ws.send(new JoinLobbyMessage(lobbyId).toString());
-
-        // Update creator status
-        setLobbyState({
-          ...lobbyState,
-          isCreator: false,
-          myPieceType: PieceType.WHITE
-        });
       }
     }
   }
+
+  useEffect(() => {
+    if (window.location.pathname === '/join') {
+      // Update creator status
+      setLobbyState({
+        ...lobbyState,
+        isCreator: false,
+        myPieceType: PieceType.WHITE
+      });
+
+      window.location.replace(siteUrl);
+    }
+  }, [lobbyState]);
 
   useEffect(() => {
     ws.onopen = () => {
@@ -103,6 +111,7 @@ function Game() {
           setMovesList(initMovesList);
           setLobbyState(new LobbyState(LobbyStatus.LOBBY_EMPTY));
         } else {
+          console.log(lobbyState);
           setLobbyState({
             ...lobbyState,
             lobbyStatus: serverMessage.lobbyStatus,

@@ -15,7 +15,7 @@ function OnePlayerWaitingPanel(props: {
   const siteUrl = process.env.REACT_APP_SITE_URL!;
   const linkText =
     props.lobbyState.lobbyId !== undefined
-      ? `${siteUrl}/?lobbyId=${props.lobbyState.lobbyId}`
+      ? `${siteUrl}/join?lobbyId=${props.lobbyState.lobbyId}`
       : undefined;
 
   function copyToClipboard() {

@@ -20,6 +20,7 @@ Bugfixes:
 
 In progress:
 - user accounts
+- new user join on link does not set creator field properly
 
 11/22/22:
 In progress:
