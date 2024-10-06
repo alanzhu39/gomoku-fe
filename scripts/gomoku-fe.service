@@ -1,0 +1,13 @@
+[Unit]
+Description=Gomoku FE Service
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/gomoku-fe
+ExecStart=/home/pi/gomoku-fe/scripts/run.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

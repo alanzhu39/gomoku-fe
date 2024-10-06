@@ -25,7 +25,7 @@ function MenuBar(props: { panes: any; setPanes: any }) {
   return (
     <div className='MenuBar'>
       <div className='MenuBarItem' onClick={goHome}>
-        PlayGomoku.net
+        PlayGomoku
       </div>
       <div className='spacer'></div>
       <div className='MenuBarItem' onClick={openAboutPane}>
