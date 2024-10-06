@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-# PlayGomoku.net
+# PlayGomoku
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -25,7 +25,7 @@
     <img src="images/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">PlayGomoku.net</h3>
+  <h3 align="center">PlayGomoku</h3>
 
   <p align="center">
     An awesome way to play Gomoku with your friends!
@@ -54,9 +54,9 @@
 
 ## About The Project
 
-[![PlayGomoku.net Screen Shot][product-screenshot]](https://www.playgomoku.net)
+[![PlayGomoku Screen Shot][product-screenshot]](https://gomoku.alanzhu39.com)
 
-PlayGomoku.net is a simple website for playing the board game Gomoku with your friends. Simply create a lobby and invite your friends to join!
+PlayGomoku is a simple website for playing the board game Gomoku with your friends. Simply create a lobby and invite your friends to join!
 
 Learn more about Gomoku here:
 

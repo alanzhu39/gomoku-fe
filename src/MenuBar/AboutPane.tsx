@@ -12,7 +12,7 @@ function AboutPane(props: { isOpen: boolean; onRequestClose: any }) {
       <div className='AboutPane'>
         <h2>About</h2>
         <p>
-          PlayGomoku.net provides a simple interface for playing the board game
+          PlayGomoku provides a simple interface for playing the board game
           Gomoku with your friends! Visit the {'"How to play"'} section to learn
           more about the rules of the game.
         </p>
@@ -38,7 +38,7 @@ function AboutPane(props: { isOpen: boolean; onRequestClose: any }) {
         </p>
         <h3>Credits</h3>
         <p>
-          PlayGomoku.net is developed and maintained by Alan Zhu. Check out the
+          PlayGomoku is developed and maintained by Alan Zhu. Check out the
           GitHub link in the menu bar to learn more!
         </p>
       </div>
