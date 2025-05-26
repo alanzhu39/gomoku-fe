@@ -8,6 +8,7 @@ function MenuBar(props: { panes: any; setPanes: any }) {
     // Clear local storage
     window.localStorage.removeItem('MOVES_LIST');
     window.localStorage.removeItem('LOBBY_STATE');
+    window.localStorage.removeItem('SESSION_TOKEN');
 
     // Redirect
     const siteUrl = process.env.REACT_APP_SITE_URL!;

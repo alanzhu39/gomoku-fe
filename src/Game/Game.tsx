@@ -59,25 +59,23 @@ function Game() {
       const pathName = window.location.pathname;
       const lobbyId = params.get('lobbyId');
 
-      if (pathName === '/join' && lobbyId !== null) {
+      if (
+        pathName === '/join' &&
+        lobbyId !== null &&
+        lobbyId !== lobbyState.lobbyId
+      ) {
+        // Update creator status
+        setLobbyState({
+          ...lobbyState,
+          isCreator: false,
+          myPieceType: PieceType.WHITE
+        });
+
         // Send WS join lobby message
         ws.send(new JoinLobbyMessage(lobbyId).toString());
       }
     }
   }
-
-  useEffect(() => {
-    if (window.location.pathname === '/join') {
-      // Update creator status
-      setLobbyState({
-        ...lobbyState,
-        isCreator: false,
-        myPieceType: PieceType.WHITE
-      });
-
-      window.location.replace(siteUrl);
-    }
-  }, [lobbyState]);
 
   useEffect(() => {
     ws.onopen = () => {
@@ -111,7 +109,6 @@ function Game() {
           setMovesList(initMovesList);
           setLobbyState(new LobbyState(LobbyStatus.LOBBY_EMPTY));
         } else {
-          console.log(lobbyState);
           setLobbyState({
             ...lobbyState,
             lobbyStatus: serverMessage.lobbyStatus,
