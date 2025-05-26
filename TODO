@@ -22,6 +22,42 @@ In progress:
 - user accounts
 - new user join on link does not set creator field properly
 
+
+5/25/2025:
+In progress:
+- fixing link sharing
+
+lobby create/join/share flow:
+on first landing on page:
+- if existing session token:
+  - create new WS connection with provided session token
+- else:
+  - create new WS connection
+- session token tracks current lobby memberships, so you stay in the lobby across page refreshes
+then:
+- check for auto-join
+- if auto join:
+  - if lobby status is empty, then send join lobby message
+- if existing session, get the current lobby and game state
+
+possible causes:
+- is the server missing the join lobby messages?
+- is the client not sending the join lobby messages?
+
+two-fold bug:
+- backend
+  - properly leaving the lobby for a given session token
+- frontend
+  - fixing the auto-join logic (removing the redirect for now), and making the menu bar just reset everything
+  - make it easy I think, since it's already resetting lobby state and esp. moves list, so it'll be boomed anyways on reconnect
+
+fix:
+- even if we open the tab multiple times, only the most recent connection will be active!
+  - because there's only one active connection per session token.
+- honestly if all else fails just reset all the state by clicking the home button lol
+
+
+
 11/22/22:
 In progress:
 
